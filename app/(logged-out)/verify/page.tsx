@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -47,43 +48,57 @@ export default function LoginPage() {
   const email = searchParams.get("email");
 
   useEffect(() => {
-    const updateDarkMode = () =>
-      setIsDarkMode(document.body.className.includes("dark"));
-    updateDarkMode();
+    const className = document.body.className;
+    setIsDarkMode(className.includes("dark"));
 
-    const observer = new MutationObserver(() => updateDarkMode());
-    observer.observe(document.body, { attributes: true });
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          const className = document.body.className;
+          setIsDarkMode(className.includes("dark"));
+        }
+      });
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+    });
 
     return () => observer.disconnect();
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { verificationCode: "" },
+    defaultValues: {
+      verificationCode: "",
+    },
   });
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
+    const { verificationCode } = data;
     const actionResult = await dispatch(
       verifyEmail({
-        verificationCode: Number(data.verificationCode),
+        verificationCode,
         email,
       } as VerifyEmailPayload)
     );
-
     if (verifyEmail.fulfilled.match(actionResult)) {
+      if (actionResult.payload) {
+        toast({
+          title: "Doğrulama Başarılı",
+          description: "Başarıyla giriş yaptınız.",
+        });
+        router.push("/login");
+      } else {
+        toast({
+          title: "Doğrulama Başarısız",
+          description: "Geçersiz yanıt formatı.",
+          variant: "destructive",
+        });
+      }
+    } else if (verifyEmail.rejected.match(actionResult)) {
       toast({
-        title: actionResult.payload
-          ? "Email Doğrulama Başarılı"
-          : "Email Doğrulama Başarısız",
-        description: actionResult.payload
-          ? "Başarıyla giriş yaptınız."
-          : "Geçersiz yanıt formatı.",
-        variant: actionResult.payload ? undefined : "destructive",
-      });
-      if (actionResult.payload) router.push("/login");
-    } else {
-      toast({
-        title: "Email Doğrulama Başarısız",
+        title: "Doğrulama Başarısız",
         description: actionResult.payload as React.ReactNode,
         variant: "destructive",
       });
@@ -91,7 +106,7 @@ export default function LoginPage() {
   };
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Image
         src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
         width="140"
@@ -101,9 +116,9 @@ export default function LoginPage() {
       />
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Email Doğrula</CardTitle>
+          <CardTitle>Email Doğrulama</CardTitle>
           <CardDescription>
-            Maili doğrulamak için bilgileri girin.
+            Email adresinizi doğrulamak için bilgileri girin.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -112,6 +127,7 @@ export default function LoginPage() {
               className="flex flex-col gap-4"
               onSubmit={form.handleSubmit(handleSubmit)}
             >
+              {/* verificationCode Input */}
               <FormField
                 control={form.control}
                 name="verificationCode"
@@ -119,27 +135,14 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Doğrulama Kodu</FormLabel>
                     <FormControl>
-                      <InputOTP
-                        maxLength={4}
-                        onChange={(value) => field.onChange(value)}
-                      >
-                        <InputOTPGroup>
-                          <InputOTPSlot index={0} />
-                          <InputOTPSlot index={1} />
-                        </InputOTPGroup>
-                        <InputOTPSeparator />
-                        <InputOTPGroup>
-                          <InputOTPSlot index={2} />
-                          <InputOTPSlot index={3} />
-                        </InputOTPGroup>
-                      </InputOTP>
+                      <Input placeholder="1234" {...field} />
                     </FormControl>
                     <FormDescription>Doğrulama Kodu girin</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Şifremi Sıfırla</Button>
+              <Button type="submit">Doğrula</Button>
             </form>
           </Form>
         </CardContent>
@@ -150,6 +153,6 @@ export default function LoginPage() {
           </Button>
         </CardFooter>
       </Card>
-    </>
+    </Suspense>
   );
 }

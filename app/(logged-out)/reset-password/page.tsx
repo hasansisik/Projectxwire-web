@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -119,7 +120,7 @@ export default function LoginPage() {
   };
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Image
         src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
         width="140"
@@ -196,6 +197,6 @@ export default function LoginPage() {
           </Button>
         </CardFooter>
       </Card>
-    </>
+    </Suspense>
   );
 }
