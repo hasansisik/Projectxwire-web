@@ -22,6 +22,7 @@ export default function RootLayout({
       <body className={cn(poppins.className, "light")}>
         <Provider store={store}>{children}</Provider>
       </body>
+      <SpeedInsights />
     </html>
   );
 }
