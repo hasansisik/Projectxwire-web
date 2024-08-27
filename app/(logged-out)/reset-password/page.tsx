@@ -1,5 +1,6 @@
 "use client";
-import { Suspense } from "react";
+
+import { Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,7 +32,6 @@ import {
   ResetPasswordPayload,
 } from "@/redux/actions/userActions";
 import { useToast } from "@/components/ui/use-toast";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const formSchema = z
@@ -54,8 +54,9 @@ export default function LoginPage() {
   const { toast } = useToast();
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const searchParams = useSearchParams();
   const email = searchParams.get("email");
 
   useEffect(() => {
@@ -120,7 +121,20 @@ export default function LoginPage() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          Yükleniyor...
+        </div>
+      }
+    >
       <Image
         src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
         width="140"

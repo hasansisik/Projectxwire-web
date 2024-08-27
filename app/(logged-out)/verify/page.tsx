@@ -1,5 +1,6 @@
 "use client";
-import { Suspense } from "react";
+
+import { useEffect, useState, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,7 +27,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/redux/hook";
 import { verifyEmail, VerifyEmailPayload } from "@/redux/actions/userActions";
 import { useToast } from "@/components/ui/use-toast";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   InputOTP,
@@ -92,7 +92,20 @@ export default function VerifyPage() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          Yükleniyor...
+        </div>
+      }
+    >
       <Image
         src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
         width="140"
