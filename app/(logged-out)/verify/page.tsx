@@ -93,7 +93,7 @@ function VerifyContent() {
   return (
     <>
       <Image
-        src={isDarkMode ? "/img/planwireWhite.png" : "/img/planwireBlack.png"}
+        src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
         width="140"
         height="35"
         alt="Planwire"

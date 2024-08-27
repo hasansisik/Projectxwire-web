@@ -27,7 +27,7 @@ export default function MenuTitle() {
   return (
     <div className="flex items-center p-4 justify-center">
       <Image
-        src={isDarkMode ? "/img/planwireWhite.png" : "/img/planwireBlack.png"}
+        src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
         width="140"
         height="35"
         alt="Planwire"

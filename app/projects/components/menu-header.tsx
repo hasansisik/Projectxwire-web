@@ -79,7 +79,7 @@ export default function MenuHeader() {
   return (
     <div className="flex items-center justify-between bg-muted mb-10 p-4 border-b">
       <Image
-        src={isDarkMode ? "/img/planwireWhite.png" : "/img/planwireBlack.png"}
+        src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
         width="130"
         height="30"
         alt="Planwire"

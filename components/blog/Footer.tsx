@@ -41,7 +41,7 @@ export function Footer() {
                 className="flex items-center space-x-2 text-2xl font-medium text-orange-600 dark:text-gray-100"
               >
                 <Image
-        src={isDarkMode ? "/img/planwireWhite.png" : "/img/planwireBlack.png"}
+        src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
                   width="140"
                   height="35"
                   alt="Planwire"

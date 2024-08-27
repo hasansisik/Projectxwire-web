@@ -50,7 +50,7 @@ export const Navbar = () => {
           <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
             <Link href="/">
               <Image
-        src={isDarkMode ? "/img/planwireWhite.png" : "/img/planwireBlack.png"}
+        src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
                 width="140"
                 height="35"
                 alt="Planwire"
