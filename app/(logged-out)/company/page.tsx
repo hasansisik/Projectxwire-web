@@ -97,7 +97,7 @@ export default function CompanyPage() {
   return (
     <>
       <Image
-        src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
+        src={isDarkMode ? "/img/planwireWhite.png" : "/img/planwireBlack.png"}
         width="140"
         height="35"
         alt="Planwire"
