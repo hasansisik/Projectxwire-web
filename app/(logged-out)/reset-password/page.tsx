@@ -50,14 +50,12 @@ const formSchema = z
     }
   });
 
-export default function LoginPage() {
-  const { toast } = useToast();
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
+export default function ResetPage() {
   const searchParams = useSearchParams();
-  const email = searchParams.get("email");
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { toast } = useToast();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const className = document.body.className;
@@ -94,7 +92,7 @@ export default function LoginPage() {
       resetPassword({
         passwordToken: Number(passwordToken),
         newPassword,
-        email,
+        email: searchParams.get("email"),
       } as ResetPasswordPayload)
     );
     if (resetPassword.fulfilled.match(actionResult)) {

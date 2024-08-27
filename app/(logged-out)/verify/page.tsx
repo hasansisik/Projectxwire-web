@@ -40,16 +40,15 @@ const formSchema = z.object({
 });
 
 export default function VerifyPage() {
-  const { toast } = useToast();
-  const dispatch = useAppDispatch();
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { toast } = useToast();
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const email = searchParams.get("email");
 
   useEffect(() => {
     const updateDarkMode = () =>
-      setIsDarkMode(document.body.className.includes("dark"));
+    setIsDarkMode(document.body.className.includes("dark"));
     updateDarkMode();
 
     const observer = new MutationObserver(() => updateDarkMode());
@@ -67,7 +66,7 @@ export default function VerifyPage() {
     const actionResult = await dispatch(
       verifyEmail({
         verificationCode: Number(data.verificationCode),
-        email,
+        email: searchParams.get("email"),
       } as VerifyEmailPayload)
     );
 
