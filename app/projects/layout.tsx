@@ -8,7 +8,6 @@ import { AppDispatch } from "@/redux/store";
 import { loadUser } from "@/redux/actions/userActions";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 type Props = {
   children: React.ReactNode;
