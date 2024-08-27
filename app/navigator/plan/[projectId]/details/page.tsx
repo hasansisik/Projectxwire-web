@@ -1,9 +1,10 @@
 "use client";
+
+import { useEffect, useState, useRef, useCallback } from "react";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState, useRef } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/redux/store";
@@ -11,7 +12,7 @@ import { getPlan, getPins, createPin } from "@/redux/actions/planActions";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { MapPin, Pencil, Type } from "lucide-react";
+import { MapPin } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -82,16 +83,16 @@ export default function PlanDetails() {
     null
   );
 
-  const fetchPins = async () => {
+  const fetchPins = useCallback(async () => {
     if (planId) await dispatch(getPins(planId));
-  };
+  }, [dispatch, planId]);
 
   useEffect(() => {
     if (planId) {
       dispatch(getPlan(planId));
       fetchPins();
     }
-  }, [dispatch, planId]);
+  }, [dispatch, planId, fetchPins]);
 
   useEffect(() => {
     if (companyId) {
@@ -431,7 +432,8 @@ export default function PlanDetails() {
         <div>
           <h6>Görev Detayları</h6>
           <p className="text-muted-foreground font-normal text-xs pb-5">
-            Görevlere eklenmiş pinleri buradan inceleyebilir, ekleyebilir ve arama yapabilirsiniz.
+            Görevlere eklenmiş pinleri buradan inceleyebilir, ekleyebilir ve
+            arama yapabilirsiniz.
           </p>
           <Table>
             <TableCaption>Bu plana ait görevler.</TableCaption>
@@ -450,12 +452,12 @@ export default function PlanDetails() {
                   onClick={() => handlePinClick(pin?.task?._id)}
                 >
                   <TableCell className="font-medium">
-                  {pin?.task?.number}
+                    {pin?.task?.number}
                   </TableCell>
                   <TableCell>{pin?.task?.taskTitle}</TableCell>
                   <TableCell>{pin?.task?.taskCategory}</TableCell>
                   <TableCell className="text-right">
-                  {new Date(pin?.task?.createdAt).toLocaleDateString()}
+                    {new Date(pin?.task?.createdAt).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
               ))}
