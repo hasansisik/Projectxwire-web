@@ -273,7 +273,7 @@ export default function Projects() {
               <CardHeader>
                 <CardTitle className="text-base flex justify-between">
                   {project.projectName}
-                  {user.role === "admin" && (
+                  {user?.role === "admin" && (
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
                         <Toggle

@@ -368,7 +368,7 @@ export default function Plans() {
                       <p className="text-sm font-normal">
                         {new Date(item.updatedAt).toLocaleDateString()}
                       </p>
-                      {user.role === "admin" && (
+                      {user?.role === "admin" && (
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
                             <Toggle
@@ -438,7 +438,7 @@ export default function Plans() {
                       <p className="text-sm font-normal">
                         {new Date(item.updatedAt).toLocaleDateString()}
                       </p>
-                      {user.role === "admin" && (
+                      {user?.role === "admin" && (
                         <AlertDialog>
                           <AlertDialogTrigger asChild>
                             <Toggle

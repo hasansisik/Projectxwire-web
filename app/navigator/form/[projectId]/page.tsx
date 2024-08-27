@@ -376,7 +376,7 @@ export default function Forms() {
                     <CardTitle className="text-base">
                       <div className="flex-center gap-5 justify-between">
                         <div className="flex-center">
-                          {user.role === "admin" && (
+                          {user?.role === "admin" && (
                             <AlertDialog>
                               <AlertDialogTrigger asChild>
                                 <Toggle
@@ -469,7 +469,7 @@ export default function Forms() {
                     <CardTitle className="text-base">
                       <div className="flex-center gap-5 justify-between">
                         <div className="flex-center">
-                          {user.role === "admin" && (
+                          {user?.role === "admin" && (
                             <AlertDialog>
                               <AlertDialogTrigger asChild>
                                 <Toggle
