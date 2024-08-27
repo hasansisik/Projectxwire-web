@@ -50,7 +50,7 @@ const formSchema = z
     }
   });
 
-export default function ResetPage() {
+function ResetContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -119,20 +119,7 @@ export default function ResetPage() {
   };
 
   return (
-    <Suspense
-      fallback={
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          Yükleniyor...
-        </div>
-      }
-    >
+    <>
       <Image
         src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
         width="140"
@@ -209,6 +196,27 @@ export default function ResetPage() {
           </Button>
         </CardFooter>
       </Card>
+    </>
+  );
+}
+
+export default function ResetPage() {
+  return (
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          Yükleniyor...
+        </div>
+      }
+    >
+      <ResetContent />
     </Suspense>
   );
 }

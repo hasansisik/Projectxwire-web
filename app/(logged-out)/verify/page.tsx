@@ -39,7 +39,7 @@ const formSchema = z.object({
   verificationCode: z.string(),
 });
 
-export default function VerifyPage() {
+function VerifyContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -48,7 +48,7 @@ export default function VerifyPage() {
 
   useEffect(() => {
     const updateDarkMode = () =>
-    setIsDarkMode(document.body.className.includes("dark"));
+      setIsDarkMode(document.body.className.includes("dark"));
     updateDarkMode();
 
     const observer = new MutationObserver(() => updateDarkMode());
@@ -91,20 +91,7 @@ export default function VerifyPage() {
   };
 
   return (
-    <Suspense
-      fallback={
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-          }}
-        >
-          Yükleniyor...
-        </div>
-      }
-    >
+    <>
       <Image
         src={isDarkMode ? "/planwireWhite.png" : "/planwireBlack.png"}
         width="140"
@@ -163,6 +150,27 @@ export default function VerifyPage() {
           </Button>
         </CardFooter>
       </Card>
+    </>
+  );
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense
+      fallback={
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        >
+          Yükleniyor...
+        </div>
+      }
+    >
+      <VerifyContent />
     </Suspense>
   );
 }
