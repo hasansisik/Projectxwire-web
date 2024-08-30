@@ -103,6 +103,12 @@
     flex-wrap: wrap;
     gap: 16px;
   }
+  .cards-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
   .task-card {
     flex: 1 1 calc(33.333% - 16px);
     max-width: calc(33.333% - 16px);

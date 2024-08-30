@@ -36,8 +36,9 @@ export default function BlogPage() {
         height="35"
         alt="Planwire"
         style={{ width: "140px", height: "35px" }}
+        className="hidden sm:block"
       />
-      <h1 className="flex gap-2 items-center">Hoşgeldiniz Sitemize !</h1>
+      <h3 className="flex gap-2 items-center">Hoşgeldiniz Sitemize !</h3>
       <p>Sitemize Hoşgeldiniz</p>
       <div className="flex gap-3 items-center">
         <Button asChild>

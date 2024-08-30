@@ -18,10 +18,10 @@ export default function RootLayout({
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col gap-5 items-center justify-center p-20">
+      <div className="flex flex-col items-center justify-center gap-5 sm:p-20">
         {children}
-        <Toaster />
       </div>
+      <Toaster />
       <Footer />
       <LightDarkToggle className="fixed top-[calc(50%-12px)] right-2" />
     </div>

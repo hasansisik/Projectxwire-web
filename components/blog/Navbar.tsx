@@ -44,24 +44,23 @@ export const Navbar = () => {
 
   return (
     <div className="w-full">
-      <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
-        {/* Logo  */}
-        <>
-          <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
-            <Link href="/">
-              <Image
-        src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
-                width="140"
-                height="35"
-                alt="Planwire"
-                style={{ width: "140px", height: "35px" }}
-              />
-            </Link>
-          </div>
-        </>
-        <div className="hidden mr-3 space-x-4 lg:flex nav__item">
+      <nav className="container relative flex items-center justify-between p-8 mx-auto">
+        {/* Logo */}
+        <div className="flex items-center">
+          <Link href="/">
+            <Image
+              src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
+              width="140"
+              height="35"
+              alt="Planwire"
+              style={{ width: "140px", height: "35px" }}
+            />
+          </Link>
+        </div>
+        {/* Buton */}
+        <div className="ml-auto">
           <Link href={navigationHref}>
-            <span className="px-6 py-2 text-white bg-orange-600 rounded-md md:ml-5">
+            <span className="px-6 py-2 text-white bg-orange-600 rounded-md">
               Panele Git
             </span>
           </Link>

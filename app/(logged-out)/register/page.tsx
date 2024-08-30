@@ -131,6 +131,7 @@ export default function SignupPage() {
         height="35"
         alt="Planwire"
         style={{ width: "140px", height: "35px" }}
+        className="hidden sm:block"
       />
       <Card className="w-full max-w-sm">
         <CardHeader>

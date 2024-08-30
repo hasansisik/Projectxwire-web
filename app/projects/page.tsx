@@ -267,7 +267,7 @@ export default function Projects() {
           <Link
             key={project._id}
             href={`/navigator/plan/${project._id}`}
-            className="form-card"
+            className="sm:form-card"
           >
             <Card>
               <CardHeader>
