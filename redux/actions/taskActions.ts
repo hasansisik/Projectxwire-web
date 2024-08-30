@@ -7,7 +7,8 @@ export interface CreateTaskPayload {
   taskCreator: any;
   taskTitle: string;
   taskCategory: string;
-  plan?: any; // plan özelliğini isteğe bağlı hale getiriyoruz
+  taskDesc: string;
+  plan?: any; 
   persons: any;
 }
 
@@ -38,6 +39,7 @@ export const createTask = createAsyncThunk(
       projectId,
       taskCategory,
       taskTitle,
+      taskDesc,
       persons,
       plan,
       taskCreator,
@@ -48,6 +50,7 @@ export const createTask = createAsyncThunk(
       const response = await axios.post(`${server}/task/${projectId}`, {
         taskCategory,
         taskTitle,
+        taskDesc,
         persons,
         plan,
         taskCreator,

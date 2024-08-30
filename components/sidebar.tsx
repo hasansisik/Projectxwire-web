@@ -33,12 +33,16 @@ export function Sidebar({ isCollapsed, task }: SidebarProps) {
       ) : (
         <div className="flex flex-col gap-5">
           <div className="flex-between">
-            <h6 className="text-sm">Görev İsmi :</h6>
+            <h6 className="text-sm">Görev Başlığı :</h6>
             <p className="text-sm">{task.taskTitle}</p>
           </div>
           <div className="flex-between">
             <h6 className="text-sm">Görev Kategorisi :</h6>
             <p className="text-sm">{task.taskCategory}</p>
+          </div>
+          <div className="flex-between">
+            <h6 className="text-sm">Görev Açıklaması :</h6>
+            <p className="text-sm">{task.taskDesc}</p>
           </div>
           <div className="flex-between">
             <h6 className="text-sm">Oluşturan Kişi :</h6>

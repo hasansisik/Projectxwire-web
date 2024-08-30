@@ -60,8 +60,9 @@ const getCompanyId = () =>
   typeof window !== "undefined" ? localStorage.getItem("companyId") : null;
 
 const formSchema = z.object({
-  taskTitle: z.string().nonempty("Plan kodu zorunludur"),
-  taskCategory: z.string().nonempty("Plan kategori zorunludur"),
+  taskTitle: z.string().nonempty("Görev kodu zorunludur"),
+  taskCategory: z.string().nonempty("Görev kategori zorunludur"),
+  taskDesc: z.string().nonempty("Görev açıklaması zorunludur"),
   persons: z.any(),
 });
 
@@ -107,6 +108,7 @@ export default function PlanDetails() {
     defaultValues: {
       taskTitle: "",
       taskCategory: "",
+      taskDesc: "",
       persons: "",
     },
   });
@@ -362,7 +364,7 @@ export default function PlanDetails() {
                         name="taskTitle"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Görev İsmi</FormLabel>
+                            <FormLabel>Görev Başlığı</FormLabel>
                             <FormControl>
                               <Input placeholder="Görev Başlığı" {...field} />
                             </FormControl>
@@ -387,6 +389,25 @@ export default function PlanDetails() {
                             </FormControl>
                             <FormDescription>
                               Görev Kategorisi Girin
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="taskDesc"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Görev Açıklaması</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Görev Açıklaması"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormDescription>
+                              Görev Açıklaması Girin
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
