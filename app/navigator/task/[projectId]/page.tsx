@@ -470,7 +470,7 @@ export default function Tasks() {
                   </CardHeader>
                   <CardContent>
                     <h6>{task.taskTitle}</h6>
-                    <p>{task.taskTitle}</p>
+                    <p>{task.taskDesc}</p>
                   </CardContent>
                   <CardFooter className="flex-center gap-5 justify-between">
                     <p className="text-sm font-normal">
