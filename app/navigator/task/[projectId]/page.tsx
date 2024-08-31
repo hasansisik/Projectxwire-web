@@ -226,6 +226,7 @@ export default function Tasks() {
       });
       if (projectId) {
         dispatch(getTasks(projectId));
+        handleClear();
       }
     } else if (deleteTask.rejected.match(actionResult)) {
       toast({
@@ -404,9 +405,11 @@ export default function Tasks() {
       <div className="cards-container">
         {searchResults.length === 0
           ? tasks.map((task: Task) => (
-              <Link
+              <div
                 key={task._id}
-                href={`/navigator/task/${projectId}/details/?taskId=${task._id}`}
+                onClick={() => {
+                  window.location.href = `/navigator/task/${projectId}/details/?taskId=${task._id}`;
+                }}
                 className="task-card"
               >
                 <Card>
@@ -420,13 +423,16 @@ export default function Tasks() {
                                 <Toggle
                                   aria-label="Toggle italic"
                                   onClick={(e) => {
+                                    e.stopPropagation();
                                     setSelectedTaskId(task._id);
                                   }}
                                 >
                                   <Trash2 size={18} />
                                 </Toggle>
                               </AlertDialogTrigger>
-                              <AlertDialogContent>
+                              <AlertDialogContent
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>
                                     Görevi Sil
@@ -439,7 +445,10 @@ export default function Tasks() {
                                 <AlertDialogFooter>
                                   <AlertDialogCancel>İptal</AlertDialogCancel>
                                   <AlertDialogAction
-                                    onClick={handleDeleteTask}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteTask();
+                                    }}
                                     className="bg-red-500 text-white"
                                   >
                                     Sil
@@ -481,12 +490,14 @@ export default function Tasks() {
                     <AvatarGroup persons={task.persons} />
                   </CardFooter>
                 </Card>
-              </Link>
+              </div>
             ))
           : searchResults.map((task: Task) => (
-              <Link
+              <div
                 key={task._id}
-                href={`/navigator/task/${projectId}/details/?taskId=${task._id}`}
+                onClick={() => {
+                  window.location.href = `/navigator/task/${projectId}/details/?taskId=${task._id}`;
+                }}
                 className="task-card"
               >
                 <Card>
@@ -500,13 +511,16 @@ export default function Tasks() {
                                 <Toggle
                                   aria-label="Toggle italic"
                                   onClick={(e) => {
+                                    e.stopPropagation();
                                     setSelectedTaskId(task._id);
                                   }}
                                 >
                                   <Trash2 size={18} />
                                 </Toggle>
                               </AlertDialogTrigger>
-                              <AlertDialogContent>
+                              <AlertDialogContent
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>
                                     Görevi Sil
@@ -519,7 +533,10 @@ export default function Tasks() {
                                 <AlertDialogFooter>
                                   <AlertDialogCancel>İptal</AlertDialogCancel>
                                   <AlertDialogAction
-                                    onClick={handleDeleteTask}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteTask();
+                                    }}
                                     className="bg-red-500 text-white"
                                   >
                                     Sil
@@ -550,6 +567,7 @@ export default function Tasks() {
                   </CardHeader>
                   <CardContent>
                     <h6>{task.taskTitle}</h6>
+                    <p>{task.taskDesc}</p>
                   </CardContent>
                   <CardFooter className="flex-center gap-5 justify-between">
                     <p className="text-sm font-normal">
@@ -560,7 +578,7 @@ export default function Tasks() {
                     <AvatarGroup persons={task.persons} />
                   </CardFooter>
                 </Card>
-              </Link>
+              </div>
             ))}
       </div>
     </div>

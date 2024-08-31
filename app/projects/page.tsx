@@ -31,7 +31,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { LayoutGrid, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -264,10 +263,12 @@ export default function Projects() {
       </div>
       <div className="cards-container">
         {projects.map((project: Project) => (
-          <Link
+          <div
             key={project._id}
-            href={`/navigator/plan/${project._id}`}
-            className="sm:form-card"
+            className="sm:form-card cursor-pointer"
+            onClick={() => {
+              window.location.href = `/navigator/plan/${project._id}`;
+            }}
           >
             <Card>
               <CardHeader>
@@ -280,14 +281,13 @@ export default function Projects() {
                           aria-label="Toggle italic"
                           onClick={(e) => {
                             e.stopPropagation();
-                            e.preventDefault();
                             setSelectedProjectId(project._id);
                           }}
                         >
                           <Trash2 size={20} />
                         </Toggle>
                       </AlertDialogTrigger>
-                      <AlertDialogContent>
+                      <AlertDialogContent onClick={(e) => e.stopPropagation()}>
                         <AlertDialogHeader>
                           <AlertDialogTitle>Projeyi Sil</AlertDialogTitle>
                           <AlertDialogDescription>
@@ -298,7 +298,10 @@ export default function Projects() {
                         <AlertDialogFooter>
                           <AlertDialogCancel>İptal</AlertDialogCancel>
                           <AlertDialogAction
-                            onClick={handleDeleteProject}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteProject();
+                            }}
                             className="bg-red-500 text-white"
                           >
                             Sil
@@ -321,7 +324,7 @@ export default function Projects() {
                 />
               </CardContent>
             </Card>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

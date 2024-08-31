@@ -216,6 +216,7 @@ export default function Forms() {
       });
       if (projectId) {
         dispatch(getForms(projectId));
+        handleClear();
       }
     } else if (deleteForm.rejected.match(actionResult)) {
       toast({
@@ -382,13 +383,16 @@ export default function Forms() {
                                 <Toggle
                                   aria-label="Toggle italic"
                                   onClick={(e) => {
+                                    e.stopPropagation();
                                     setSelectedFormId(form._id);
                                   }}
                                 >
                                   <Trash2 size={18} />
                                 </Toggle>
                               </AlertDialogTrigger>
-                              <AlertDialogContent>
+                              <AlertDialogContent
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>Formu Sil</AlertDialogTitle>
                                   <AlertDialogDescription>
@@ -399,7 +403,10 @@ export default function Forms() {
                                 <AlertDialogFooter>
                                   <AlertDialogCancel>İptal</AlertDialogCancel>
                                   <AlertDialogAction
-                                    onClick={handleDeleteForm}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteForm();
+                                    }}
                                     className="bg-red-500 text-white"
                                   >
                                     Sil
@@ -475,13 +482,16 @@ export default function Forms() {
                                 <Toggle
                                   aria-label="Toggle italic"
                                   onClick={(e) => {
+                                    e.stopPropagation();
                                     setSelectedFormId(form._id);
                                   }}
                                 >
                                   <Trash2 size={18} />
                                 </Toggle>
                               </AlertDialogTrigger>
-                              <AlertDialogContent>
+                              <AlertDialogContent
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <AlertDialogHeader>
                                   <AlertDialogTitle>Formu Sil</AlertDialogTitle>
                                   <AlertDialogDescription>
@@ -492,7 +502,10 @@ export default function Forms() {
                                 <AlertDialogFooter>
                                   <AlertDialogCancel>İptal</AlertDialogCancel>
                                   <AlertDialogAction
-                                    onClick={handleDeleteForm}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleDeleteForm();
+                                    }}
                                     className="bg-red-500 text-white"
                                   >
                                     Sil

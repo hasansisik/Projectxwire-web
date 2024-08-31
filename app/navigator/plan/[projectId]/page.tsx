@@ -195,6 +195,7 @@ export default function Plans() {
       });
       if (projectId) {
         dispatch(getPlans(projectId));
+        handleClear();
       }
     } else if (deletePlan.rejected.match(actionResult)) {
       toast({
@@ -345,9 +346,11 @@ export default function Plans() {
                 </div>
               </AccordionTrigger>
               <AccordionContent className="cards-container">
-                <Link
-                  href={`/navigator/plan/${projectId}/details/?planId=${item._id}`}
+                <div
                   className="plan-card"
+                  onClick={() => {
+                    window.location.href = `/navigator/plan/${projectId}/details/?planId=${item._id}`;
+                  }}
                 >
                   <Card>
                     <CardHeader>
@@ -374,13 +377,16 @@ export default function Plans() {
                             <Toggle
                               aria-label="Toggle italic"
                               onClick={(e) => {
+                                e.stopPropagation();
                                 setSelectedPlanId(item._id);
                               }}
                             >
                               <Trash2 size={18} />
                             </Toggle>
                           </AlertDialogTrigger>
-                          <AlertDialogContent>
+                          <AlertDialogContent
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <AlertDialogHeader>
                               <AlertDialogTitle>Planı Sil</AlertDialogTitle>
                               <AlertDialogDescription>
@@ -391,7 +397,10 @@ export default function Plans() {
                             <AlertDialogFooter>
                               <AlertDialogCancel>İptal</AlertDialogCancel>
                               <AlertDialogAction
-                                onClick={handleDeletePlan}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDeletePlan();
+                                }}
                                 className="bg-red-500 text-white"
                               >
                                 Sil
@@ -402,7 +411,7 @@ export default function Plans() {
                       )}
                     </CardFooter>
                   </Card>
-                </Link>
+                </div>
               </AccordionContent>
             </AccordionItem>
           ))
@@ -415,9 +424,11 @@ export default function Plans() {
                 </div>
               </AccordionTrigger>
               <AccordionContent className="cards-container">
-                <Link
-                  href={`/navigator/plan/${projectId}/details/?planId=${item._id}`}
+                <div
                   className="plan-card"
+                  onClick={() => {
+                    window.location.href = `/navigator/plan/${projectId}/details/?planId=${item._id}`;
+                  }}
                 >
                   <Card>
                     <CardHeader>
@@ -444,13 +455,16 @@ export default function Plans() {
                             <Toggle
                               aria-label="Toggle italic"
                               onClick={(e) => {
+                                e.stopPropagation();
                                 setSelectedPlanId(item._id);
                               }}
                             >
                               <Trash2 size={18} />
                             </Toggle>
                           </AlertDialogTrigger>
-                          <AlertDialogContent>
+                          <AlertDialogContent
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <AlertDialogHeader>
                               <AlertDialogTitle>Planı Sil</AlertDialogTitle>
                               <AlertDialogDescription>
@@ -461,7 +475,10 @@ export default function Plans() {
                             <AlertDialogFooter>
                               <AlertDialogCancel>İptal</AlertDialogCancel>
                               <AlertDialogAction
-                                onClick={handleDeletePlan}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleDeletePlan();
+                                }}
                                 className="bg-red-500 text-white"
                               >
                                 Sil
@@ -472,7 +489,7 @@ export default function Plans() {
                       )}
                     </CardFooter>
                   </Card>
-                </Link>
+                </div>
               </AccordionContent>
             </AccordionItem>
           ))}
