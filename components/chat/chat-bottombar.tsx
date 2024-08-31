@@ -82,7 +82,12 @@ export default function ChatBottombar({
   }, [taskId, dispatch]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(event.target.value);
+    const value = event.target.value;
+    setMessage(value);
+    if (value.includes("@")) {
+      setIsUserDialogOpen(true);
+      setMessage(""); 
+    }
   };
 
   const uploadLogoToFirebase = async (file: File): Promise<string> => {
