@@ -28,8 +28,11 @@ import {
 } from "../ui/select";
 import { getAllUsers } from "@/redux/actions/userActions";
 import io from "socket.io-client";
+import { server } from "@/config";
 
-const socket = io("http://localhost:3050");
+const socket = io(server.replace("/v1", ""), {
+  transports: ["websocket"],
+});
 
 interface ChatBottombarProps {
   taskId: string;
