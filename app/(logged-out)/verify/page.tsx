@@ -140,7 +140,7 @@ function VerifyContent() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Şifremi Sıfırla</Button>
+              <Button type="submit">Email Doğrula</Button>
             </form>
           </Form>
         </CardContent>

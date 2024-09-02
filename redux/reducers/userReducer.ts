@@ -130,19 +130,19 @@ export const userReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.error = action.payload as string;
     })
-    // // Edit Profile
-    // .addCase(editProfile.pending, (state) => {
-    //   state.loading = true;
-    // })
-    // .addCase(editProfile.fulfilled, (state) => {
-    //   state.loading = false;
-    //   state.user = action.payload;
-    // })
-    // .addCase(editProfile.rejected, (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload as string;
-    // })
-    // Get All Users
+    // Edit Profile
+    .addCase(editProfile.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(editProfile.fulfilled, (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+    })
+    .addCase(editProfile.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload as string;
+    })
+    //Get All Users
     .addCase(getAllUsers.pending, (state) => {
       state.loading = true;
     })

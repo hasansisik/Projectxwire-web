@@ -142,7 +142,7 @@ export default function Projects() {
       }
     } else if (createProject.rejected.match(actionResult)) {
       toast({
-        title: "Giriş Başarısız",
+        title: "Proje Başarısız",
         description: actionResult.payload as React.ReactNode,
       });
     }

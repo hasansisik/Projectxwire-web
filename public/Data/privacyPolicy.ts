@@ -26,9 +26,9 @@ Kişisel verilerin silinmesini veya yok edilmesini isteme,
 İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle kişinin kendisi aleyhine bir sonucun ortaya çıkmasına itiraz etme,
 Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme, haklarına sahiptir.
 
-Yukarıda sayılan haklarınızı kullanmak üzere info@PlanWire.com üzerinden bizimle iletişime geçebilirsiniz.
+Yukarıda sayılan haklarınızı kullanmak üzere info@planwire.app  üzerinden bizimle iletişime geçebilirsiniz.
 
 İletişim
-Sizlere talepleriniz doğrultusunda hizmet sunabilmek amacıyla, sadece gerekli olan kişisel verilerinizin, işbu gizlilik ve kişisel verilerin işlenmesi politikası uyarınca işlenmesini, kabul edip etmemek hususunda tamamen özgürsünüz. Uygulamayı kullanmaya devam ettiğiniz takdirde, kabul etmiş olduğunuz tarafımızca varsayılacaktır. Şayet kabul etmiyorsanız, lütfen uygulamayı tüm cihazlarınızdan kaldırınız. Ayrıntılı bilgi için bizimle info@PlanWire.com e-mail adresi üzerinden iletişime geçmekten lütfen çekinmeyiniz.`;
+Sizlere talepleriniz doğrultusunda hizmet sunabilmek amacıyla, sadece gerekli olan kişisel verilerinizin, işbu gizlilik ve kişisel verilerin işlenmesi politikası uyarınca işlenmesini, kabul edip etmemek hususunda tamamen özgürsünüz. Uygulamayı kullanmaya devam ettiğiniz takdirde, kabul etmiş olduğunuz tarafımızca varsayılacaktır. Şayet kabul etmiyorsanız, lütfen uygulamayı tüm cihazlarınızdan kaldırınız. Ayrıntılı bilgi için bizimle info@planwire.app  e-mail adresi üzerinden iletişime geçmekten lütfen çekinmeyiniz.`;
 
 export default privacyPolicy;
