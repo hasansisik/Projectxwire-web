@@ -65,7 +65,7 @@ export function Sidebar({ isCollapsed, task }: SidebarProps) {
                 src={task.plan.planImages}
                 width="450"
                 height="300"
-                alt="Planwire"
+                alt="Projectxwire"
                 style={{ width: "450px", height: "300px" }}
               />
             </Link>

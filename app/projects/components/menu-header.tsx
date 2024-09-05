@@ -80,10 +80,10 @@ export default function MenuHeader() {
     <div className="flex items-center justify-between bg-muted mb-10 p-4 border-b">
       <Image
         src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
-        width="130"
-        height="30"
-        alt="Planwire"
-        style={{ width: "130px", height: "30px" }}
+        width="200"
+        height="60"
+        alt="Projectxwire"
+        style={{ width: "200px", height: "60px" }}
       />
       <div className="flex text-center items-center">
         <p className="text-sm">

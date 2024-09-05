@@ -6,7 +6,7 @@ import { Footer } from "@/components/blog/Footer";
 import { LightDarkToggle } from "@/components/ui/light-dark-toggle";
 
 export const metadata: Metadata = {
-  title: "Planwire",
+  title: "Projectxwire",
   description: "Şantiye Yönetim Sistemi",
 };
 

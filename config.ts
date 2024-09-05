@@ -1,15 +1,14 @@
-export const server: string = "https://planwire-server-c43de163a156.herokuapp.com/v1";
-
+export const server: string ="https://projectxwire-server-5073a6b2b3e5.herokuapp.com/v1";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApSZwPwPS3U3ydssq7B1vh8nK-BVh_f64",
-  authDomain: "planwire-9e539.firebaseapp.com",
-  projectId: "planwire-9e539",
-  storageBucket: "planwire-9e539.appspot.com",
-  messagingSenderId: "982181421524",
-  appId: "1:982181421524:web:f2654764525f24b7e93641",
+  apiKey: "AIzaSyDmVWi3Rv1RQW3Zsj8YxBA39_raFdZYtaM",
+  authDomain: "projectxwire-e951a.firebaseapp.com",
+  projectId: "projectxwire-e951a",
+  storageBucket: "projectxwire-e951a.appspot.com",
+  messagingSenderId: "238622610992",
+  appId: "1:238622610992:web:6d990e5a837b49afcafff5",
 };
 
 const app = initializeApp(firebaseConfig);

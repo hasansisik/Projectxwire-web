@@ -16,7 +16,7 @@ const benefitOne = {
   bullets: [
     {
       title: "Sorunları Hızla Raporlayın",
-      desc: "Planwire ile sahadaki sorunları anında raporlayabilir ve hızlı çözümler üretebilirsiniz.",
+      desc: "Projectxwire ile sahadaki sorunları anında raporlayabilir ve hızlı çözümler üretebilirsiniz.",
       icon: <SmileyIcon />,
     },
     {
@@ -49,7 +49,7 @@ const benefitTwo = {
     },
     {
       title: "Kullanıcı Dostu Arayüz",
-      desc: "Planwire, kullanımı kolay ve kullanıcı dostu bir arayüze sahiptir.",
+      desc: "Projectxwire, kullanımı kolay ve kullanıcı dostu bir arayüze sahiptir.",
       icon: <SunIcon />,
     },
   ],

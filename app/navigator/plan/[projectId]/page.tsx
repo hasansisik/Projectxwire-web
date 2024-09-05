@@ -364,7 +364,7 @@ export default function Plans() {
                         src={item.planImages}
                         width="175"
                         height="100"
-                        alt="Planwire"
+                        alt="Projectxwire"
                       />
                     </CardContent>
                     <CardFooter className="flex flex-row justify-between">
@@ -442,7 +442,7 @@ export default function Plans() {
                         src={item.planImages}
                         width="175"
                         height="100"
-                        alt="Planwire"
+                        alt="Projectxwire"
                       />
                     </CardContent>
                     <CardFooter className="flex flex-row justify-between">

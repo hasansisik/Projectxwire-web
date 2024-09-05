@@ -36,13 +36,13 @@ export const Faq = () => {
 
 const faqdata = [
   {
-    question: "Planwire uygulamasını nasıl indirebilirim?",
+    question: "Projectxwire uygulamasını nasıl indirebilirim?",
     answer:
-      "Planwire uygulamasını Play Store, App Store veya web panelimizden indirebilirsiniz.",
+      "Projectxwire uygulamasını Play Store, App Store veya web panelimizden indirebilirsiniz.",
   },
   {
-    question: "Planwire uygulamasını ticari projelerde kullanabilir miyim?",
-    answer: "Evet, Planwire uygulamasını ticari projelerde kullanabilirsiniz.",
+    question: "Projectxwire uygulamasını ticari projelerde kullanabilir miyim?",
+    answer: "Evet, Projectxwire uygulamasını ticari projelerde kullanabilirsiniz.",
   },
   {
     question: "Ücretsiz bir destek sunuyor musunuz?",
@@ -50,7 +50,7 @@ const faqdata = [
       "Ücretsiz indirme için teknik destek sunmuyoruz. Destek planı satın alarak 6 ay süresince destek alabilirsiniz.",
   },
   {
-    question: "Planwire uygulaması ile ilgili iade politikası nedir?",
+    question: "Projectxwire uygulaması ile ilgili iade politikası nedir?",
     answer:
       "Uygulama ile ilgili herhangi bir memnuniyetsizlik durumunda, 90 gün içinde bize e-posta göndererek tam iade talebinde bulunabilirsiniz.",
   },

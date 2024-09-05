@@ -94,7 +94,7 @@ export default function ChatBottombar({
   };
 
   const uploadLogoToFirebase = async (file: File): Promise<string> => {
-    const storageRef = ref(storage, `PlanwireFile/${file.name}`);
+    const storageRef = ref(storage, `ProjectxwireFile/${file.name}`);
     await uploadBytes(storageRef, file);
     const downloadURL = await getDownloadURL(storageRef);
     return downloadURL;

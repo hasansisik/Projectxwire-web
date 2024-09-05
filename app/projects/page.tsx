@@ -60,7 +60,7 @@ import { storage } from "@/config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const uploadLogoToFirebase = async (file: File): Promise<string> => {
-  const storageRef = ref(storage, `PlanwireProject/${file.name}`);
+  const storageRef = ref(storage, `ProjectxwireProject/${file.name}`);
   await uploadBytes(storageRef, file);
   const downloadURL = await getDownloadURL(storageRef);
   return downloadURL;
@@ -313,11 +313,11 @@ export default function Projects() {
                 </CardTitle>
                 <CardDescription>{project.projectCode}</CardDescription>
               </CardHeader>
-              <CardContent className="items-center w-[150px] h-[150px]">
+              <CardContent className="items-center w-[200px] h-[150px]">
                 <Image
                   src={project.logo}
-                  alt="Planwire"
-                  width={150}
+                  alt="Projectxwire"
+                  width={200}
                   height={150}
                   style={{ objectFit: "cover" }}
                   priority

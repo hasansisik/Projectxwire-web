@@ -50,10 +50,10 @@ export const Navbar = () => {
           <Link href="/">
             <Image
               src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
-              width="140"
-              height="35"
-              alt="Planwire"
-              style={{ width: "140px", height: "35px" }}
+              width="240"
+              height="75"
+              alt="Projectxwire"
+              style={{ width: "240", height: "75px" }}
             />
           </Link>
         </div>

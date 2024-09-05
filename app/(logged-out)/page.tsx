@@ -13,13 +13,13 @@ export default function Home() {
     <Container>
       <Hero />
       <SectionTitle
-        preTitle="Planwire"
+        preTitle="Projectxwire"
         title="İnşaat Sahalarında Sorun Yönetimi İçin Güçlü ve Etkili Çözüm"
       >
-        Planwire, inşaat sahalarındaki sorunları hızla yönetmenizi sağlayan bir
+        Projectxwire, inşaat sahalarındaki sorunları hızla yönetmenizi sağlayan bir
         mobil uygulamadır. Uygulama içi mesajlaşma ve belge yönetimi ile
         ekibinizin iletişimini ve dokümantasyonu güvenli bir şekilde organize
-        eder. Planwire, iş akışınızı optimize ederek projelerinizin sorunsuz
+        eder. Projectxwire, iş akışınızı optimize ederek projelerinizin sorunsuz
         ilerlemesine katkı sağlar.
       </SectionTitle>
 
@@ -30,7 +30,7 @@ export default function Home() {
         preTitle="Video İzleyin"
         title="İhtiyaçlarınıza Nasıl Ulaşacağınızı Öğrenin"
       >
-        Bu bölüm, Planwire ürününüzün tanıtım veya demo videosunu vurgulamak
+        Bu bölüm, Projectxwire ürününüzün tanıtım veya demo videosunu vurgulamak
         için tasarlanmıştır. Analistler, bir açılış sayfasının video ile %3 daha
         yüksek dönüşüm oranına sahip olduğunu belirtiyor. Bu yüzden, videoyu
         eklemeyi unutmayın. Tam da böyle.

@@ -44,16 +44,16 @@ export function Footer() {
                   src={
                     isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"
                   }
-                  width="140"
-                  height="35"
-                  alt="Planwire"
-                  style={{ width: "140px", height: "35px" }}
+                  width="240"
+                  height="75"
+                  alt="Projectxwire"
+                  style={{ width: "240", height: "75px" }}
                 />
               </Link>
             </div>
 
             <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-              Planwire , inşaat sektöründe faaliyet gösteren bir uygulama
+              Projectxwire , inşaat sektöründe faaliyet gösteren bir uygulama
               şirkettir.
             </div>
 
@@ -125,8 +125,8 @@ export function Footer() {
 
         <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
           Telif Hakkı © {new Date().getFullYear()}. ♥ ile yapılmıştır,{" "}
-          <a href="https://planwireapp.com/" target="_blank" rel="noopener">
-            <strong>Planwire</strong>.
+          <a href="https://projectxwire.com/" target="_blank" rel="noopener">
+            <strong>Projectxwire</strong>.
           </a>{" "}
           Yazılımı yapan firma{" "}
           <a href="https://gegify.com/" target="_blank" rel="noopener">

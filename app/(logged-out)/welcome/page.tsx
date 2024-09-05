@@ -32,10 +32,10 @@ export default function BlogPage() {
     <>
       <Image
         src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
-        width="140"
-        height="35"
-        alt="Planwire"
-        style={{ width: "140px", height: "35px" }}
+        width="175"
+        height="55"
+        alt="Projectxwire"
+        style={{ width: "175px", height: "55px" }}
         className="hidden sm:block"
       />
       <h3 className="flex gap-2 items-center">Hoşgeldiniz Sitemize !</h3>

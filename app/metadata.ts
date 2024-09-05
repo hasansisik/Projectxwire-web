@@ -2,6 +2,6 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Planwire",
+  title: "Projectxwire",
   description: "Şantiye Yönetim Sistemi",
 };

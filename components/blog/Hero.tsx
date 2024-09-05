@@ -9,7 +9,7 @@ export const Hero = () => {
         <div className="flex items-center w-full lg:w-1/2">
           <div className="mb-8">
             <h1 className="text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-5xl xl:leading-tight dark:text-white">
-              Planwire , web veya mobil uygulama üzerinden ulaşabilirsiniz.
+              Projectxwire , web veya mobil uygulama üzerinden ulaşabilirsiniz.
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl dark:text-gray-300">
               Panele gidebilir veya ios cihazlarınız için App store veya Android

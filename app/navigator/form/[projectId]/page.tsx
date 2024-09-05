@@ -436,7 +436,7 @@ export default function Forms() {
                         width="40"
                         height="40"
                         style={{ borderRadius: "50%" }}
-                        alt="Planwire"
+                        alt="Projectxwire"
                       />
                       <div>
                         <p className="text-xs font-normal">Oluşturan :</p>
@@ -451,7 +451,7 @@ export default function Forms() {
                         width="40"
                         height="40"
                         style={{ borderRadius: "50%" }}
-                        alt="Planwire"
+                        alt="Projectxwire"
                       />
                       <div>
                         <p className="text-xs font-normal">İmzalayan :</p>
@@ -535,7 +535,7 @@ export default function Forms() {
                         width="40"
                         height="40"
                         style={{ borderRadius: "50%" }}
-                        alt="Planwire"
+                        alt="Projectxwire"
                       />
                       <div>
                         <p className="text-xs font-normal">Oluşturan :</p>
@@ -550,7 +550,7 @@ export default function Forms() {
                         width="40"
                         height="40"
                         style={{ borderRadius: "50%" }}
-                        alt="Planwire"
+                        alt="Projectxwire"
                       />
                       <div>
                         <p className="text-xs font-normal">İmzalayan :</p>

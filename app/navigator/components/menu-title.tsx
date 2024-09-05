@@ -28,10 +28,10 @@ export default function MenuTitle() {
     <div className="flex items-center p-4 justify-center">
       <Image
         src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
-        width="140"
-        height="35"
-        alt="Planwire"
-        style={{ width: "140px", height: "35px" }}
+        width="180"
+        height="50"
+        alt="Projectxwire"
+        style={{ width: "180px", height: "50px" }}
       />
     </div>
   );
