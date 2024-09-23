@@ -61,7 +61,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Clock } from "lucide-react";
 
 const uploadLogoToFirebase = async (file: File): Promise<string> => {
-  const storageRef = ref(storage, `ProjectxwireProject/${file.name}`);
+  const storageRef = ref(storage, `ProjectxwireSites/${file.name}`);
   await uploadBytes(storageRef, file);
   const downloadURL = await getDownloadURL(storageRef);
   return downloadURL;
@@ -141,7 +141,7 @@ export default function Sites() {
       }
     } else if (createSite.rejected.match(actionResult)) {
       toast({
-        title: "Proje Başarısız",
+        title: "Şantiye Başarısız",
         description: actionResult.payload as React.ReactNode,
       });
     }
@@ -223,11 +223,13 @@ export default function Sites() {
                       name="siteName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Proje İsmi</FormLabel>
+                          <FormLabel>Şantiye İsmi</FormLabel>
                           <FormControl>
                             <Input placeholder="İstanbul Şantiye" {...field} />
                           </FormControl>
-                          <FormDescription>Proje İsmini Girin</FormDescription>
+                          <FormDescription>
+                            Şantiye İsmini Girin
+                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -238,11 +240,13 @@ export default function Sites() {
                       name="siteCode"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Proje Kodu</FormLabel>
+                          <FormLabel>Şantiye Kodu</FormLabel>
                           <FormControl>
                             <Input placeholder="IST001" {...field} />
                           </FormControl>
-                          <FormDescription>Proje Kodunu Girin</FormDescription>
+                          <FormDescription>
+                            Şantiye Kodunu Girin
+                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -253,7 +257,7 @@ export default function Sites() {
                       name="logo"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Proje Logosu</FormLabel>
+                          <FormLabel>Şantiye Logosu</FormLabel>
                           <FormControl>
                             <Input
                               type="file"
@@ -262,7 +266,7 @@ export default function Sites() {
                             />
                           </FormControl>
                           <FormDescription>
-                            Proje Logosunu Girin
+                            Şantiye Logosunu Girin
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -270,7 +274,7 @@ export default function Sites() {
                     />
                     <DialogFooter>
                       <DialogClose asChild>
-                        <Button type="submit">Proje Ekle</Button>
+                        <Button type="submit">Şantiye Ekle</Button>
                       </DialogClose>
                     </DialogFooter>
                   </form>
@@ -286,7 +290,7 @@ export default function Sites() {
             key={site._id}
             className="sm:form-card cursor-pointer"
             onClick={() => {
-              window.location.href = `/navigator/plan/${site._id}`;
+              window.location.href = `/projects/${site._id}`;
             }}
           >
             <Card className="rounded-2xl">
@@ -305,9 +309,9 @@ export default function Sites() {
                   </AlertDialogTrigger>
                   <AlertDialogContent onClick={(e) => e.stopPropagation()}>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Projeyi Sil</AlertDialogTitle>
+                      <AlertDialogTitle>Şantiyeyi Sil</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Bu projeyi silmek istediğinizden emin misiniz? Bu işlem
+                        Bu şantiyeyi silmek istediğinizden emin misiniz? Bu işlem
                         geri alınamaz.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
@@ -340,7 +344,9 @@ export default function Sites() {
                 </div>
                 {/* Sağ Kısım */}
                 <div className="relative w-[55%] h-full flex justify-center items-center px-5 bg-[#EBEBEB] rounded-bl-2xl rounded-tr-2xl">
-                  <p className="text-black text-xs font-medium">{site.siteName}</p>
+                  <p className="text-black text-xs font-medium">
+                    {site.siteName}
+                  </p>
                 </div>
               </CardHeader>
               <CardContent className="p-3 flex flex-row rounded-b-2xl items-center justify-between gap-2 bg-[#383838]">
