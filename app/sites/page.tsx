@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -29,14 +30,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
-import { Info, LayoutGrid, Plus, Trash2 } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/redux/store";
-import { Toggle } from "@/components/ui/toggle";
 import {
   createSite,
   CreateSitePayload,
@@ -52,7 +45,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { CalendarIcon, Info, LayoutGrid, Plus, Trash2 } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/redux/store";
+import { Toggle } from "@/components/ui/toggle";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { tr } from "date-fns/locale";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import { Site } from "@/redux/reducers/siteReducer";
@@ -74,6 +84,7 @@ const getCompanyId = () => {
 const formSchema = z.object({
   siteName: z.string().nonempty("Şantiye ismi zorunludur"),
   siteCode: z.string().nonempty("Şantiye kodu zorunludur"),
+  finishDate: z.any().optional(),
   logo: z.any().optional(),
 });
 
@@ -83,12 +94,14 @@ export default function Sites() {
   const sites = useSelector((state: RootState) => state.sites.sites);
   const user = useSelector((state: RootState) => state.user.user);
   const [selectedSiteId, setSelectedSiteId] = useState<string | null>(null);
+  const [date, setDate] = React.useState<Date>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       siteName: "",
       siteCode: "",
+      finishDate: "",
       logo: null,
     },
   });
@@ -251,6 +264,57 @@ export default function Sites() {
                         </FormItem>
                       )}
                     />
+                    {/* finishDate  */}
+                    <FormField
+                      control={form.control}
+                      name="finishDate"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col space-y-2">
+                          <FormLabel>Bitiş Tarihi</FormLabel>
+                          <FormControl>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant={"outline"}
+                                  className={cn(
+                                    "w-[240px] justify-start text-left font-normal",
+                                    !field.value && "text-muted-foreground"
+                                  )}
+                                >
+                                  <CalendarIcon className="mr-2 h-4 w-4" />
+                                  {field.value ? (
+                                    format(new Date(field.value), "PPP", {
+                                      locale: tr,
+                                    })
+                                  ) : (
+                                    <span>Tarih Seçin</span>
+                                  )}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto p-0"
+                                align="start"
+                              >
+                                <Calendar
+                                  mode="single"
+                                  selected={
+                                    field.value
+                                      ? new Date(field.value)
+                                      : undefined
+                                  }
+                                  onSelect={(date) => field.onChange(date)}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                          </FormControl>
+                          <FormDescription>
+                            Şantiye Bitiş Tarihi Girin
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                     {/* Logo Input */}
                     <FormField
                       control={form.control}
@@ -311,8 +375,8 @@ export default function Sites() {
                     <AlertDialogHeader>
                       <AlertDialogTitle>Şantiyeyi Sil</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Bu şantiyeyi silmek istediğinizden emin misiniz? Bu işlem
-                        geri alınamaz.
+                        Bu şantiyeyi silmek istediğinizden emin misiniz? Bu
+                        işlem geri alınamaz.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
