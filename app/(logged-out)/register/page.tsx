@@ -207,7 +207,7 @@ export default function SignupPage() {
           </Form>
         </CardContent>
         <CardFooter className="justify-between">
-          <small>Zaten hesabınız var mı</small>
+          <small>Zaten hesabınız var mı?</small>
           <Button asChild variant="outline" size="sm">
             <Link href="/login">Giriş Yap</Link>
           </Button>

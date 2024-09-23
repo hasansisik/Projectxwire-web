@@ -159,13 +159,23 @@ export default function LoginPage() {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="justify-between">
-          <Link href="/forgot-password" className="text-xs font-bold underline">
-            Şifremi Unuttum
-          </Link>
-          <small>Hesabınız yok mu ?</small>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/register">Kayıt Ol</Link>
+        <CardFooter className="flex flex-col">
+          <div className="flex items-center gap-2">
+            <Link
+              href="/forgot-password"
+              className="text-xs font-bold underline"
+            >
+              Şifremi Unuttum
+            </Link>
+            <small>Hesabınız yok mu ?</small>
+            <Button asChild variant="outline" size="sm">
+              <Link href="/register">Kayıt Ol</Link>
+            </Button>
+          </div>
+          <Button variant="link">
+            <Link href="/company" className="text-xs font-bold underline">
+              Şirket bilgisi yok ise giriş yapın.
+            </Link>
           </Button>
         </CardFooter>
       </Card>

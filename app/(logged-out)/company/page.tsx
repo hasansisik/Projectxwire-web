@@ -29,6 +29,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const formSchema = z.object({
   CompanyCode: z.string().nonempty("Şirket kodu gerekli"),
@@ -94,6 +95,16 @@ export default function CompanyPage() {
     }
   };
 
+  const handleForgotInfoPress = () => {
+    window.location.href =
+      "mailto:destek@Projectxwire.com?subject=Bilgilerimi Unuttum&body=Merhaba, bilgilerimi unuttum, yardımcı olabilir misiniz?";
+  };
+
+  const handleApplyPress = () => {
+    window.location.href =
+      "mailto:basvur@Projectxwire.com?subject=Başvuru&body=Merhaba, şirket kodu başvurusunda bulunmak istiyorum.";
+  };
+
   return (
     <>
       <Image
@@ -151,6 +162,25 @@ export default function CompanyPage() {
             </form>
           </Form>
         </CardContent>
+        <CardFooter className="flex flex-col">
+          <div>
+            <small>Şirket Kodunuz yok mu?</small>
+            <Button
+              variant="link"
+              onClick={handleApplyPress}
+              className="text-xs font-bold underline"
+            >
+              Başvur
+            </Button>
+          </div>
+          <Button
+            variant="link"
+            onClick={handleForgotInfoPress}
+            className="text-xs font-bold underline"
+          >
+            Şirket giriş bilgilerimi unuttum.
+          </Button>
+        </CardFooter>
       </Card>
     </>
   );
