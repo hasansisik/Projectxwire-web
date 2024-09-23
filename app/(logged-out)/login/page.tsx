@@ -85,7 +85,7 @@ export default function LoginPage() {
           title: "Giriş Başarılı",
           description: "Başarıyla giriş yaptınız.",
         });
-        router.push("/projects");
+        router.push("/sites");
       } else {
         toast({
           title: "Giriş Başarısız",

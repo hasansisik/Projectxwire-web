@@ -5,8 +5,12 @@ import { server } from "../../config";
 export interface CreateProjectPayload {
   projectName: string;
   projectCode: string;
-  logo?: string; 
+  projectCategory: string;
+  address: string;
+  logo?: string;
+  siteId: string;
   companyId: string;
+  finishDate: string;
 }
 
 interface UpdateProjectPayload {
@@ -15,6 +19,11 @@ interface UpdateProjectPayload {
   projectCode: string;
   address: string;
   logo: string;
+}
+
+interface GetProjectsPayload {
+  companyId: string;
+  siteId: string;
 }
 
 export const createProject = createAsyncThunk(
@@ -31,11 +40,11 @@ export const createProject = createAsyncThunk(
 
 export const getProjects = createAsyncThunk(
   "project/getAll",
-  async (companyId: string, thunkAPI) => {
+  async (payload: GetProjectsPayload, thunkAPI) => {
     try {
-      const { data } = await axios.post(`${server}/project/gets`, { companyId });
+      const { data } = await axios.post(`${server}/project/gets`, payload);
       return data.projects;
-    } catch (error:any) {
+    } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -74,5 +83,12 @@ export const deleteProject = createAsyncThunk(
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
+  }
+);
+
+export const clearProjects = createAsyncThunk(
+  "project/clear",
+  async (_, thunkAPI) => {
+    return [];
   }
 );
