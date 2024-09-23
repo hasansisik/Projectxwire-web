@@ -60,7 +60,7 @@ export default function MainMenu({ className }: { className?: string }) {
       )}
     >
       <header className="border-b dark:border-b-black border-b-zinc-300">
-        <Link href="/projects">
+        <Link href="/sites">
           <MenuTitle />
         </Link>
       </header>

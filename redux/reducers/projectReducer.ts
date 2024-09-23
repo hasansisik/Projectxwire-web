@@ -11,6 +11,13 @@ export interface Project {
   _id: string;
   projectName: string;
   projectCode: string;
+  projectCategory: string;
+  finishDate: string;
+  site: {
+    _id: string;
+    siteName: string;
+  };
+  siteId: string;
   address: string;
   logo: string;
 }

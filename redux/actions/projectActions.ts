@@ -6,11 +6,9 @@ export interface CreateProjectPayload {
   projectName: string;
   projectCode: string;
   projectCategory: string;
-  address: string;
-  logo?: string;
   siteId: string;
   companyId: string;
-  finishDate: string;
+  finishDate: Date;
 }
 
 interface UpdateProjectPayload {
@@ -21,7 +19,7 @@ interface UpdateProjectPayload {
   logo: string;
 }
 
-interface GetProjectsPayload {
+export interface GetProjectsPayload {
   companyId: string;
   siteId: string;
 }
@@ -29,6 +27,7 @@ interface GetProjectsPayload {
 export const createProject = createAsyncThunk(
   "project/create",
   async (payload: CreateProjectPayload, thunkAPI) => {
+    console.log("payload");
     try {
       const { data } = await axios.post(`${server}/project`, payload);
       return data.project;

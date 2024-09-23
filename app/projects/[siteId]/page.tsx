@@ -29,20 +29,28 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
-import { LayoutGrid, Plus, Trash2 } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/redux/store";
-import { Toggle } from "@/components/ui/toggle";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   createProject,
   CreateProjectPayload,
+  GetProjectsPayload,
   getProjects,
   deleteProject,
 } from "@/redux/actions/projectActions";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -52,19 +60,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { CalendarIcon, LayoutGrid, Plus, Trash2 } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/redux/store";
+import { Toggle } from "@/components/ui/toggle";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import { Project } from "@/redux/reducers/projectReducer";
-import { storage } from "@/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-const uploadLogoToFirebase = async (file: File): Promise<string> => {
-  const storageRef = ref(storage, `ProjectxwireProject/${file.name}`);
-  await uploadBytes(storageRef, file);
-  const downloadURL = await getDownloadURL(storageRef);
-  return downloadURL;
-};
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { tr } from "date-fns/locale";
 
 const getCompanyId = () => {
   return localStorage.getItem("companyId");
@@ -73,7 +84,8 @@ const getCompanyId = () => {
 const formSchema = z.object({
   projectName: z.string().nonempty("Proje ismi zorunludur"),
   projectCode: z.string().nonempty("Proje kodu zorunludur"),
-  logo: z.any().optional(),
+  projectCategory: z.string().nonempty("Proje kategorisi zorunludur"),
+  finishDate: z.date().optional(),
 });
 
 export default function Projects() {
@@ -85,19 +97,32 @@ export default function Projects() {
     null
   );
 
+  const siteId = useRef<string | null | undefined>(null);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    siteId.current = url.pathname.split("/").pop() || undefined;
+  }, []);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       projectName: "",
       projectCode: "",
-      logo: null,
+      projectCategory: "",
+      finishDate: undefined,
     },
   });
 
   useEffect(() => {
     const companyId = getCompanyId();
-    if (companyId) {
-      dispatch(getProjects(companyId));
+    if (companyId && siteId.current) {
+      const payload: GetProjectsPayload = {
+        companyId,
+        siteId: siteId.current as string,
+      };
+      console.log("Get Projects Payload:", payload); 
+      dispatch(getProjects(payload));
     }
   }, [dispatch]);
 
@@ -111,27 +136,35 @@ export default function Projects() {
       return;
     }
 
-    let logoURL = "";
-    if (data.logo && data.logo[0]) {
-      const logoFile = data.logo[0] as unknown as File;
-      logoURL = await uploadLogoToFirebase(logoFile);
+    if (!siteId.current) {
+      toast({
+        title: "Hata",
+        description: "Site ID'si bulunamadı.",
+      });
+      return;
     }
 
     const payload: CreateProjectPayload = {
       ...data,
       companyId,
-      logo: logoURL || undefined,
+      siteId: siteId.current as string,
+      finishDate: data.finishDate || new Date(), 
     };
 
     const actionResult = await dispatch(createProject(payload));
+    console.log("actions", actionResult);
     if (createProject.fulfilled.match(actionResult)) {
       if (actionResult.payload) {
         toast({
           title: "Proje Oluşturuldu",
           description: "Başarıyla proje oluşturuldu.",
         });
-        if (companyId) {
-          dispatch(getProjects(companyId));
+        if (companyId && siteId.current) {
+          const payload: GetProjectsPayload = {
+            companyId,
+            siteId: siteId.current as string,
+          };
+          dispatch(getProjects(payload));
         }
       } else {
         toast({
@@ -158,8 +191,12 @@ export default function Projects() {
         description: "Proje başarıyla silindi.",
       });
       const companyId = getCompanyId();
-      if (companyId) {
-        dispatch(getProjects(companyId));
+      if (companyId && siteId.current) {
+        const payload: GetProjectsPayload = {
+          companyId,
+          siteId: siteId.current as string,
+        };
+        dispatch(getProjects(payload));
       }
     } else if (deleteProject.rejected.match(actionResult)) {
       toast({
@@ -167,6 +204,21 @@ export default function Projects() {
         description: actionResult.payload as React.ReactNode,
         variant: "destructive",
       });
+    }
+  };
+
+  const translateCategory = (category: string) => {
+    switch (category) {
+      case "architecture":
+        return "Mimari";
+      case "electrical":
+        return "Elektrik";
+      case "statics":
+        return "Statik";
+      case "landscape":
+        return "Peyzaj";
+      default:
+        return category;
     }
   };
 
@@ -228,22 +280,98 @@ export default function Projects() {
                         </FormItem>
                       )}
                     />
-                    {/* Logo Input */}
+                    {/* projectCategory Input */}
                     <FormField
                       control={form.control}
-                      name="logo"
+                      name="projectCategory"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Proje Logosu</FormLabel>
+                          <FormLabel>Proje Kategorisi</FormLabel>
                           <FormControl>
-                            <Input
-                              type="file"
-                              accept="image/png,image/jpeg,image/jpg"
-                              onChange={(e) => field.onChange(e.target.files)}
+                            <Controller
+                              control={form.control}
+                              name="projectCategory"
+                              render={({ field }) => (
+                                <Select
+                                  onValueChange={field.onChange}
+                                  value={field.value}
+                                >
+                                  <SelectTrigger className="w-[180px]">
+                                    <SelectValue placeholder="Proje Kategorisi" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectGroup>
+                                      <SelectItem value="architecture">
+                                        Mimari
+                                      </SelectItem>
+                                      <SelectItem value="electrical">
+                                        Elektrik
+                                      </SelectItem>
+                                      <SelectItem value="statics">
+                                        Statik
+                                      </SelectItem>
+                                      <SelectItem value="landscape">
+                                        Peyzaj
+                                      </SelectItem>
+                                    </SelectGroup>
+                                  </SelectContent>
+                                </Select>
+                              )}
                             />
                           </FormControl>
                           <FormDescription>
-                            Proje Logosunu Girin
+                            Proje Kategorisi Girin
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    {/* finishDate  */}
+                    <FormField
+                      control={form.control}
+                      name="finishDate"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col space-y-2">
+                          <FormLabel>Bitiş Tarihi</FormLabel>
+                          <FormControl>
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant={"outline"}
+                                  className={cn(
+                                    "w-[240px] justify-start text-left font-normal",
+                                    !field.value && "text-muted-foreground"
+                                  )}
+                                >
+                                  <CalendarIcon className="mr-2 h-4 w-4" />
+                                  {field.value ? (
+                                    format(new Date(field.value), "PPP", {
+                                      locale: tr,
+                                    })
+                                  ) : (
+                                    <span>Tarih Seçin</span>
+                                  )}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto p-0"
+                                align="start"
+                              >
+                                <Calendar
+                                  mode="single"
+                                  selected={
+                                    field.value
+                                      ? new Date(field.value)
+                                      : undefined
+                                  }
+                                  onSelect={(date) => field.onChange(date)}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
+                          </FormControl>
+                          <FormDescription>
+                            Şantiye Bitiş Tarihi Girin
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -261,16 +389,26 @@ export default function Projects() {
           </Dialog>
         </div>
       </div>
-      <div className="cards-container">
+      <div className="">
+        <Tabs defaultValue="all" className="w-[600px]">
+          <TabsList>
+            <TabsTrigger value="all">Hepsi</TabsTrigger>
+            <TabsTrigger value="architecture">Mimari</TabsTrigger>
+            <TabsTrigger value="electrical">Elektrik</TabsTrigger>
+            <TabsTrigger value="statics">Statik</TabsTrigger>
+            <TabsTrigger value="landscape">Peyzaj</TabsTrigger>
+          </TabsList>
+        </Tabs>
+
         {projects.map((project: Project) => (
           <div
             key={project._id}
-            className="sm:form-card cursor-pointer"
+            className="cursor-pointer gap-2 border-b border-gray-200"
             onClick={() => {
               window.location.href = `/navigator/plan/${project._id}`;
             }}
           >
-            <Card>
+            <Card className="border-none shadow-none">
               <CardHeader>
                 <CardTitle className="text-base flex justify-between">
                   {project.projectName}
@@ -313,15 +451,27 @@ export default function Projects() {
                 </CardTitle>
                 <CardDescription>{project.projectCode}</CardDescription>
               </CardHeader>
-              <CardContent className="items-center w-[200px] h-[150px]">
-                <Image
-                  src={project.logo}
-                  alt="Projectxwire"
-                  width={200}
-                  height={150}
-                  style={{ objectFit: "cover" }}
-                  priority
-                />
+              <CardContent className="items-center flex gap-5">
+                <div className="px-5 py-1 rounded-full border inline-block">
+                  <p className="text-zinc-700 text-sm">{project.projectCode}</p>
+                </div>
+                <div className="px-5 py-1 rounded-full border inline-block">
+                  <p className="text-zinc-700 text-sm">
+                    {translateCategory(project.projectCategory)}
+                  </p>
+                </div>
+                <div className="px-5 py-1 rounded-full border inline-block">
+                  <p className="text-zinc-700 text-sm">
+                    {project.site.siteName}
+                  </p>
+                </div>
+                <div className="px-5 py-1 rounded-full border inline-block">
+                  <p className="text-zinc-700 text-sm">
+                    {format(new Date(project.finishDate), "PPP", {
+                      locale: tr,
+                    })}
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>

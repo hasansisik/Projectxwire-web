@@ -33,7 +33,7 @@ export const Navbar = () => {
 
     if (companyId) {
       if (user) {
-        setNavigationHref("/projects");
+        setNavigationHref("/sites");
       } else {
         setNavigationHref("/welcome");
       }
