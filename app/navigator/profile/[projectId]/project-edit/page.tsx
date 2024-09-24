@@ -33,13 +33,6 @@ export default function ProjectPage() {
     logo: "",
   });
 
-  useEffect(() => {
-    const companyId = getCompanyId();
-    if (companyId) {
-      dispatch(getProjects(companyId));
-    }
-  }, [dispatch]);
-
   const projects = useSelector((state: RootState) => state.projects.projects);
 
   const handleSelectChange = (projectId: string) => {
