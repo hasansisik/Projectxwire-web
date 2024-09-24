@@ -96,6 +96,7 @@ export default function Projects() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
   );
+  const [selectedTab, setSelectedTab] = useState<string>("all");
 
   const siteId = useRef<string | null | undefined>(null);
 
@@ -221,6 +222,10 @@ export default function Projects() {
         return category;
     }
   };
+
+  const filteredProjects = selectedTab === "all"
+    ? projects
+    : projects.filter((project) => project.projectCategory === selectedTab);
 
   return (
     <div className="px-10">
@@ -390,7 +395,7 @@ export default function Projects() {
         </div>
       </div>
       <div className="">
-        <Tabs defaultValue="all" className="w-[600px]">
+        <Tabs defaultValue="all" className="w-[600px]" onValueChange={setSelectedTab}>
           <TabsList>
             <TabsTrigger value="all">Hepsi</TabsTrigger>
             <TabsTrigger value="architecture">Mimari</TabsTrigger>
@@ -400,7 +405,7 @@ export default function Projects() {
           </TabsList>
         </Tabs>
 
-        {projects.map((project: Project) => (
+        {filteredProjects.map((project: Project) => (
           <div
             key={project._id}
             className="cursor-pointer gap-2 border-b border-gray-200"
