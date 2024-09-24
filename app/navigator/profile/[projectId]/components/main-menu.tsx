@@ -22,6 +22,12 @@ export default function MainMenu({ className }: { className?: string }) {
           Projeyi Düzenle
         </MenuItem>
         <MenuItem
+          href={`/navigator/profile/${projectId}/users-edit`}
+          icon="UserRoundCog"
+        >
+          Kullanıcıları Düzenle
+        </MenuItem>
+        <MenuItem
           href={`/navigator/profile/${projectId}/helpers`}
           icon="LifeBuoy"
         >
