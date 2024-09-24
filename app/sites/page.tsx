@@ -348,113 +348,125 @@ export default function Sites() {
           </Dialog>
         </div>
       </div>
-      <div className="cards-container">
-        {sites.map((site: Site) => (
-          <div
-            key={site._id}
-            className="sm:form-card cursor-pointer"
-            onClick={() => {
-              window.location.href = `/projects/${site._id}`;
-            }}
-          >
-            <Card className="rounded-2xl">
-              {user?.role === "admin" && (
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Toggle
-                      aria-label="Toggle italic"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedSiteId(site._id);
-                      }}
-                    >
-                      <Trash2 size={20} />
-                    </Toggle>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent onClick={(e) => e.stopPropagation()}>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Şantiyeyi Sil</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        Bu şantiyeyi silmek istediğinizden emin misiniz? Bu
-                        işlem geri alınamaz.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>İptal</AlertDialogCancel>
-                      <AlertDialogAction
+            <div className="cards-container">
+        {sites.map((site: Site) => {
+          const backgroundColor = site.status ? "bg-[#383838]" : "bg-[#9E9E9E]";
+          return (
+            <div
+              key={site._id}
+              className="sm:form-card cursor-pointer"
+              onClick={() => {
+                window.location.href = `/projects/${site._id}`;
+              }}
+            >
+              <Card className="rounded-2xl">
+                {user?.role === "admin" && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Toggle
+                        aria-label="Toggle italic"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleDeleteSite();
+                          setSelectedSiteId(site._id);
                         }}
-                        className="bg-red-500 text-white"
                       >
-                        Sil
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              )}
-              <CardHeader className="p-0 flex flex-row justify-between w-full h-10 relative">
-                {/* Üst Kısım */}
-                <div className="absolute top-0 left-[42%] w-[25px] h-[50%] bg-[#EBEBEB] rounded-tr-2xl"></div>
-                {/* Alt Kısım (Renkli Barlar) */}
-                <div className="absolute bottom-0 left-[45%] w-[3%] h-[50%] bg-[#383838] rounded-tr-[20px]"></div>
-                {/* Sol Kısım */}
-                <div className="relative w-[45%] h-full flex items-center px-5 py-1 bg-[#383838] rounded-tl-2xl rounded-tr-2xl">
-                  <div className="px-10 py-1 gap-2 rounded-full border border-white flex items-center justify-center">
-                    <Info size={15} color="#FFF" />
-                    <p className="text-white text-xs">{site.siteCode}</p>
+                        <Trash2 size={20} />
+                      </Toggle>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent onClick={(e) => e.stopPropagation()}>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Şantiyeyi Sil</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Bu şantiyeyi silmek istediğinizden emin misiniz? Bu
+                          işlem geri alınamaz.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>İptal</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteSite();
+                          }}
+                          className="bg-red-500 text-white"
+                        >
+                          Sil
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+                <CardHeader className="p-0 flex flex-row justify-between w-full h-10 relative">
+                  {/* Üst Kısım */}
+                  <div className="absolute top-0 left-[42%] w-[25px] h-[50%] bg-[#EBEBEB] rounded-tr-2xl"></div>
+                  {/* Alt Kısım (Renkli Barlar) */}
+                  <div
+                    className={`absolute bottom-0 left-[45%] w-[3%] h-[50%] ${backgroundColor} rounded-tr-[20px]`}
+                  ></div>
+                  {/* Sol Kısım */}
+                  <div
+                    className={`relative w-[45%] h-full flex items-center px-5 py-1 ${backgroundColor} rounded-tl-2xl rounded-tr-2xl`}
+                  >
+                    <div className="px-10 py-1 gap-2 rounded-full border border-white flex items-center justify-center">
+                      <Info size={15} color="#FFF" />
+                      <p className="text-white text-xs">{site.siteCode}</p>
+                    </div>
                   </div>
-                </div>
-                {/* Sağ Kısım */}
-                <div className="relative w-[55%] h-full flex justify-center items-center px-5 bg-[#EBEBEB] rounded-bl-2xl rounded-tr-2xl">
-                  <p className="text-black text-xs font-medium">
-                    {site.siteName}
-                  </p>
-                </div>
-              </CardHeader>
-              <CardContent className="p-3 flex flex-row rounded-b-2xl items-center justify-between gap-2 bg-[#383838]">
-                <div className="w-[75px] h-[75px] rounded-full bg-white flex items-center justify-center">
-                  <Image
-                    src={site.logo}
-                    alt="Projectxwire"
-                    width={75}
-                    height={75}
-                    className="rounded-full"
-                  />
-                </div>
-                <div className="flex flex-rows justify-center items-center">
-                  <div className="flex flex-col items-center">
-                    <p className="text-xs text-white">Kalan Süre</p>
-                    <p className="text-xs text-white">
-                      {calculateRemainingTime(site.createdAt, site.finishDate)}
+                  {/* Sağ Kısım */}
+                  <div className="relative w-[55%] h-full flex justify-center items-center px-5 bg-[#EBEBEB] rounded-bl-2xl rounded-tr-2xl">
+                    <p className="text-black text-xs font-medium">
+                      {site.siteName}
                     </p>
                   </div>
-                  <div className="border-l border-gray-300 mx-2 h-full">.</div>
-                  <div className="flex flex-col items-center">
-                    <p className="text-xs text-white">Başlangıç Tarihi</p>
-                    <div className="flex items-center space-x-2">
-                      <Clock size={18} color="white" />
-                      <p className="text-xs text-white">
-                        {formatDate(site.createdAt)}
+                </CardHeader>
+                <CardContent
+                  className={`p-3 flex flex-row rounded-b-2xl items-center justify-between gap-2 ${backgroundColor}`}
+                >
+                  <div className="w-[75px] h-[75px] rounded-full bg-white flex items-center justify-center">
+                    <Image
+                      src={site.logo}
+                      alt="Projectxwire"
+                      width={75}
+                      height={75}
+                      className="rounded-full"
+                    />
+                  </div>
+                  <div className="flex flex-rows justify-center items-center">
+                    <div className="flex flex-col items-center">
+                      <p className={`text-xs text-white`}>Kalan Süre</p>
+                      <p className={`text-xs text-white`}>
+                        {calculateRemainingTime(
+                          site.createdAt,
+                          site.finishDate
+                        )}
                       </p>
                     </div>
-                  </div>
-                  <div className="border-l border-gray-300 mx-2 h-full">.</div>
-                  <div className="flex flex-col items-center">
-                    <p className="text-xs text-white">Bitiş Tarihi</p>
-                    <div className="flex items-center space-x-2">
-                      <Clock size={18} color="white" />
-                      <p className="text-xs text-white">
-                        {formatDate(site.finishDate)}
-                      </p>
+                    <div className="border-l border-gray-300 mx-2 h-[30px] min-w-[1px] "></div>
+                    <div className="flex flex-col items-center">
+                      <p className={`text-xs text-white`}>Başlangıç Tarihi</p>
+                      <div className="flex items-center space-x-2">
+                        <Clock size={18} color="white" />
+                        <p className={`text-xs text-white`}>
+                          {formatDate(site.createdAt)}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="border-l border-gray-300 mx-2 h-[30px] min-w-[1px] "></div>
+                    <div className="flex flex-col items-center">
+                      <p className={`text-xs text-white`}>Bitiş Tarihi</p>
+                      <div className="flex items-center space-x-2">
+                        <Clock size={18} color="white" />
+                        <p className={`text-xs text-white`}>
+                          {formatDate(site.finishDate)}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        ))}
+                </CardContent>
+              </Card>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

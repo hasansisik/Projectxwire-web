@@ -16,6 +16,7 @@ export interface Site {
   finishDate: string;
   companyId: string;
   createdAt: string;
+  status: string;
 }
 
 interface SiteState {
