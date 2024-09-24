@@ -32,9 +32,9 @@ export default async function TaskPage() {
     <>
       <div className="pb-5 flex flex-row justify-between gap-4">
         <div className="pb-2">
-          <h5>Politikalarımız</h5>
+          <h5>Personel Düzenleme</h5>
           <p className="text-muted-foreground font-normal text-sm">
-            Uygulama Politikalarımızı İnceleyebilirsiniz.
+            Personel bilgilerini düzenleyebilirsiniz.
           </p>
         </div>
       </div>
