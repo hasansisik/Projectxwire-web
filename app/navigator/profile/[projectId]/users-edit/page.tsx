@@ -4,14 +4,7 @@ import { z } from "zod";
 
 import { columns } from "@/components/tables/columns";
 import { DataTable } from "@/components/tables/data-table";
-
-export const taskSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  status: z.string(),
-  label: z.string(),
-  priority: z.string(),
-});
+import { taskSchema } from "../../../../../components/tables/schema";
 
 export type Task = z.infer<typeof taskSchema>;
 
