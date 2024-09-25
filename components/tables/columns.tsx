@@ -55,7 +55,7 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "email",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Eposta" />
+      <DataTableColumnHeader column={column} title="E-posta" />
     ),
     cell: ({ row }) => <div className="w-[200px]">{row.getValue("email")}</div>,
   },
@@ -73,9 +73,14 @@ export const columns: ColumnDef<User>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Telefon Numarası" />
     ),
-    cell: ({ row }) => (
-      <div className="w-[150px]">{row.getValue("phoneNumber")}</div>
-    ),
+    cell: ({ row }) => {
+      const phoneNumber = row.getValue("phoneNumber");
+      return (
+        <div className="w-[150px]">
+          {phoneNumber ? "phoneNumber" : "Belirtilmemiş"}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "status",
