@@ -122,7 +122,6 @@ export default function Projects() {
         companyId,
         siteId: siteId.current as string,
       };
-      console.log("Get Projects Payload:", payload); 
       dispatch(getProjects(payload));
     }
   }, [dispatch]);
@@ -153,7 +152,6 @@ export default function Projects() {
     };
 
     const actionResult = await dispatch(createProject(payload));
-    console.log("actions", actionResult);
     if (createProject.fulfilled.match(actionResult)) {
       if (actionResult.payload) {
         toast({
