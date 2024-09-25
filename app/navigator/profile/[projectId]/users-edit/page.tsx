@@ -1,25 +1,30 @@
-import { promises as fs } from "fs";
-import path from "path";
-import { z } from "zod";
-
-import { columns } from "@/components/tables/columns";
+"use client";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/redux/store";
 import { DataTable } from "@/components/tables/data-table";
-import { taskSchema } from "../../../../../components/tables/schema";
+import { useEffect } from "react";
+import { getAllUsers } from "@/redux/actions/userActions";
+import { columns } from "@/components/tables/columns";
 
-export type Task = z.infer<typeof taskSchema>;
+export default function UsersEditPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const {users} = useSelector((state: RootState) => state.user);
 
-async function getTasks() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "/components/tables/tasks.json")
-  );
+  const getCompanyId = () => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("companyId");
+    }
+    return null;
+  };
+  const companyId = getCompanyId();
 
-  const tasks = JSON.parse(data.toString());
-
-  return z.array(taskSchema).parse(tasks);
-}
-
-export default async function TaskPage() {
-  const tasks = await getTasks();
+  useEffect(() => {
+    if (companyId) {
+      dispatch(getAllUsers(companyId));
+    } else {
+      console.error("Company ID is null");
+    }
+  }, [companyId, dispatch]);
 
   return (
     <>
@@ -31,7 +36,7 @@ export default async function TaskPage() {
           </p>
         </div>
       </div>
-      <DataTable data={tasks} columns={columns} />
+      <DataTable data={users} columns={columns} />
     </>
   );
 }
