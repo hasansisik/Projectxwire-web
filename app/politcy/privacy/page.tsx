@@ -11,11 +11,15 @@ export default function PrivacyPolicy() {
       <p>
         <strong>Kişisel Bilgiler:</strong> Ad, soyad, e-posta adresi, telefon numarası, iş unvanı, adres.<br />
         <strong>Profil Bilgileri:</strong> Kullanıcıların isteğe bağlı olarak ekleyebileceği profil resmi.<br />
-        <strong>Otomatik Olarak Toplanan Bilgiler:</strong> Uygulamanın kullanımı sırasında teknik bilgiler, cihaz bilgileri, IP adresi ve tarayıcı bilgileri.
+        <strong>Otomatik Olarak Toplanan Bilgiler:</strong> Uygulamanın kullanımı sırasında teknik bilgiler, cihaz bilgileri, IP adresi ve tarayıcı bilgileri.<br />
+        <strong>Kamera İzni:</strong> Uygulama, kullanıcının fotoğraf çekmesi veya belge taraması gerektiğinde kamera erişimine ihtiyaç duyar. Kamera kullanımı sadece kullanıcı izni ile aktif hale gelir.<br />
+        <strong>Dosyalarım İzni:</strong> Uygulama, dosya yükleme ve dosyalara erişim işlemleri için cihazınızdaki depolama alanına erişim izni talep edebilir. Bu izin yalnızca kullanıcı tarafından onaylandığında verilir ve uygulama, kullanıcının belirttiği dosyalara erişim sağlar.<br />
+        <strong>Bildirim İzni:</strong> Uygulama, kullanıcılara önemli güncellemeler ve görevlerle ilgili bildirimler göndermek için bildirim izni talep eder. Kullanıcı bu izni onayladığında, sadece gerekli bildirimler gönderilir.<br />
+        <strong>E-posta Gönderme İzni:</strong> Kullanıcıya kayıt onayları, şifre sıfırlama talepleri ve önemli bilgilendirmeler gibi işlemler için e-posta gönderebiliriz.
       </p>
       <h3>Bilgi Kullanımı</h3>
       <p>
-        Toplanan bilgileri aşağıdaki amaçlar için kullanabiliriz:
+        Topladığımız bilgileri aşağıdaki amaçlar için kullanabiliriz:
       </p>
       <ul>
         <li>Uygulamanın işlevselliğini sağlamak ve geliştirmek</li>
