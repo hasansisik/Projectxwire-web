@@ -30,6 +30,7 @@ export function Footer() {
 
   const navigation = ["Anasayfa"];
 const legal = [
+  { name: "Hakkımızda", href: "/politcy/about-us" },
   { name: "Gizlilik Politikası", href: "/politcy/privacy" },
   { name: "Kullanım Koşulları", href: "/politcy/terms" },
   { name: "Çerez Politikası", href: "/politcy/cookie" },
