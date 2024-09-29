@@ -1,3 +1,4 @@
+import React from 'react';
 
 export default function PrivacyPolicy() {
   return (
@@ -6,7 +7,7 @@ export default function PrivacyPolicy() {
       <h2>Projectxwire Kullanım Koşulları</h2>
       <h3>Giriş</h3>
       <p>
-        Projectxwirea hoş geldiniz. Uygulamayı kullanarak bu kullanım koşullarını kabul etmiş olursunuz.
+        Projectxwire&apos;a hoş geldiniz. Uygulamayı kullanarak bu kullanım koşullarını kabul etmiş olursunuz.
       </p>
       <h3>Hesap Oluşturma</h3>
       <p>
@@ -20,7 +21,7 @@ export default function PrivacyPolicy() {
       </ul>
       <h3>Fikri Mülkiyet</h3>
       <p>
-        Uygulamadaki tüm içerik, tasarım, yazılım ve diğer malzemeler Projectxwireın mülkiyetindedir. İçerik, sadece izin verilen şekillerde kullanılabilir.
+        Uygulamadaki tüm içerik, tasarım, yazılım ve diğer malzemeler Projectxwire&apos;ın mülkiyetindedir. İçerik, sadece izin verilen şekillerde kullanılabilir.
       </p>
       <h3>Sorumluluk Reddi</h3>
       <p>

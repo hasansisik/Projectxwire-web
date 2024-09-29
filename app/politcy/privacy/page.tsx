@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function PrivacyPolicy() {
   return (
     <>
@@ -5,49 +7,60 @@ export default function PrivacyPolicy() {
       <h2>Projectxwire Gizlilik Politikası</h2>
       <h3>Giriş</h3>
       <p>
-        Projectxwire, kullanıcılarının gizliliğine saygı göstermeyi taahhüt eder. Bu gizlilik politikası, hangi bilgileri topladığımızı, bu bilgileri nasıl kullandığımızı ve koruduğumuzu açıklamaktadır.
+        Projectxwire olarak, kullanıcılarımızın gizliliğini koruma taahhüdüyle hareket ediyoruz. Bu gizlilik politikası, uygulamamızın hangi bilgileri topladığını, bu bilgilerin nasıl kullanıldığını ve nasıl korunduğunu açıklamaktadır. Kullanıcı verilerinin işlenmesiyle ilgili tüm işlemler, Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) ve diğer ilgili gizlilik yasalarına uygun olarak gerçekleştirilir.
       </p>
-      <h3>Topladığımız Bilgiler</h3>
+      <h3>Toplanan Bilgiler</h3>
       <p>
-        <strong>Kişisel Bilgiler:</strong> Ad, soyad, e-posta adresi, telefon numarası, iş unvanı, adres.<br />
-        <strong>Profil Bilgileri:</strong> Kullanıcıların isteğe bağlı olarak ekleyebileceği profil resmi.<br />
-        <strong>Otomatik Olarak Toplanan Bilgiler:</strong> Uygulamanın kullanımı sırasında teknik bilgiler, cihaz bilgileri, IP adresi ve tarayıcı bilgileri.<br />
-        <strong>Kamera İzni:</strong> Uygulama, kullanıcının fotoğraf çekmesi veya belge taraması gerektiğinde kamera erişimine ihtiyaç duyar. Kamera kullanımı sadece kullanıcı izni ile aktif hale gelir.<br />
-        <strong>Dosyalarım İzni:</strong> Uygulama, dosya yükleme ve dosyalara erişim işlemleri için cihazınızdaki depolama alanına erişim izni talep edebilir. Bu izin yalnızca kullanıcı tarafından onaylandığında verilir ve uygulama, kullanıcının belirttiği dosyalara erişim sağlar.<br />
-        <strong>Bildirim İzni:</strong> Uygulama, kullanıcılara önemli güncellemeler ve görevlerle ilgili bildirimler göndermek için bildirim izni talep eder. Kullanıcı bu izni onayladığında, sadece gerekli bildirimler gönderilir.<br />
-        <strong>E-posta Gönderme İzni:</strong> Kullanıcıya kayıt onayları, şifre sıfırlama talepleri ve önemli bilgilendirmeler gibi işlemler için e-posta gönderebiliriz.
+        Uygulamamızda toplanan bilgiler aşağıdaki kategorilere ayrılır:
       </p>
+      <ul>
+        <li><strong>Kişisel Bilgiler:</strong> Ad, soyad, e-posta adresi, telefon numarası gibi kimlik bilgileri.</li>
+        <li><strong>Profil Bilgileri:</strong> Kullanıcıların isteğe bağlı olarak eklediği profil fotoğrafı.</li>
+        <li><strong>Otomatik Olarak Toplanan Bilgiler:</strong> Cihaz türü, işletim sistemi, IP adresi, tarayıcı bilgileri gibi teknik veriler.</li>
+        <li><strong>Kamera Erişim İzni:</strong> Kullanıcılar, uygulama içindeki fotoğraf çekme veya belge tarama işlevlerini kullanabilmek için kameraya erişim izni vermelidir. Bu erişim yalnızca kullanıcının izni ile sağlanır ve yalnızca fotoğraf çekmek veya taramak için kullanılır.</li>
+        <li><strong>Amaç Dizisi:</strong> &quot;Uygulama, belge taramak ve fotoğraf çekmek için kameranıza erişmek istiyor.&quot;</li>
+        <li><strong>Fotoğraf Erişim İzni:</strong> Uygulama, kullanıcıların sahadaki hatalı alanların fotoğraflarını çekip bildirebilmesi için kamera erişimi talep eder. Bu erişim yalnızca kullanıcının izni ile sağlanır ve sadece hatalı alanların fotoğrafını çekmek amacıyla kullanılır.</li>
+        <li><strong>Amaç Dizisi:</strong> &quot;Uygulama, sahadaki hatalı alanların fotoğrafını çekip bildirebilmeniz için kameranıza erişim izni talep ediyor.&quot;</li>
+        <li><strong>Dosya Erişim İzni:</strong> Kullanıcılar, belirli dosyaları yüklemek veya görüntülemek için cihaz depolama alanına erişim izni verebilir.</li>
+        <li><strong>Amaç Dizisi:</strong> &quot;Uygulama, dosyalarınıza erişmek ve yüklemek için izin talep ediyor.&quot;</li>
+        <li><strong>Bildirim İzni:</strong> Kullanıcıların önemli güncellemeler ve görev bildirimleri alabilmesi için bildirim izni talep edilir.</li>
+        <li><strong>Amaç Dizisi:</strong> &quot;Uygulama, önemli güncellemeler ve görev bildirimleri göndermek için bildirim izni talep ediyor.&quot;</li>
+      </ul>
       <h3>Bilgi Kullanımı</h3>
       <p>
-        Topladığımız bilgileri aşağıdaki amaçlar için kullanabiliriz:
+        Topladığımız bilgileri şu amaçlarla kullanabiliriz:
       </p>
       <ul>
         <li>Uygulamanın işlevselliğini sağlamak ve geliştirmek</li>
-        <li>Kullanıcı hesabını oluşturmak ve yönetmek</li>
-        <li>Müşteri hizmetleri desteği sağlamak</li>
-        <li>Uygulama kullanımı hakkında analiz yapmak ve iyileştirmek</li>
-        <li>Yasal yükümlülükleri yerine getirmek</li>
+        <li>Kullanıcı hesaplarını oluşturmak ve yönetmek</li>
+        <li>Teknik destek sağlamak ve kullanıcı sorularını yanıtlamak</li>
+        <li>Uygulama performansını analiz etmek ve iyileştirmek</li>
+        <li>Yasal gerekliliklere uyum sağlamak</li>
       </ul>
       <h3>Bilgi Paylaşımı</h3>
       <p>
-        Kullanıcı bilgilerini üçüncü taraflarla yalnızca aşağıdaki durumlarda paylaşırız:
+        Kullanıcı verilerini üçüncü taraflarla yalnızca şu durumlarda paylaşırız:
       </p>
       <ul>
-        <li>Kullanıcının açık rızası ile</li>
-        <li>Yasal zorunluluklar nedeniyle</li>
-        <li>Uygulamamızın güvenliğini sağlamak ve korumak amacıyla</li>
+        <li>Kullanıcının açık rızasıyla</li>
+        <li>Yasal yükümlülüklere uymak için</li>
+        <li>Uygulamanın güvenliğini sağlamak amacıyla</li>
       </ul>
       <h3>Veri Güvenliği</h3>
       <p>
-        Kullanıcı verilerini korumak için teknik ve idari önlemler alıyoruz. Veri güvenliği konusunda endüstri standartlarını izler ve uygun güvenlik protokollerini uygularız.
+        Kullanıcı bilgilerinin gizliliğini ve güvenliğini korumak için teknik ve organizasyonel güvenlik önlemleri uygulamaktayız. Veriler, yetkisiz erişime karşı korunmakta ve sadece gerekli olduğu durumlarda işlenmektedir.
       </p>
       <h3>Kullanıcı Hakları</h3>
       <p>
-        Kullanıcılar, kişisel verilerine erişme, bunları düzeltme, silme veya işlemenin durdurulmasını talep etme hakkına sahiptir. Bu haklardan yararlanmak için bizimle iletişime geçebilirsiniz.
+        Kullanıcılar, kişisel verilerine erişme, bu verileri düzeltme veya silme hakkına sahiptir. Ayrıca, veri işleme iznini diledikleri zaman geri çekme hakkına sahiptirler. Bu haklardan yararlanmak için bizimle iletişime geçebilirsiniz.
       </p>
-      <h3>Gizlilik Politikasındaki Değişiklikler</h3>
+      <h3>Veri Toplama ve Kullanıcı Onayı</h3>
       <p>
-        Bu gizlilik politikası, yasal veya iş gereksinimlerine uygun olarak güncellenebilir. Herhangi bir değişiklik durumunda, güncellenen politikayı bu sayfada yayınlayacağız.
+        Uygulama, kullanıcılardan topladığı her türlü kişisel veri için açık ve bilgilendirilmiş bir onay alır. Kullanıcılar, bu onayı diledikleri zaman geri çekme hakkına sahiptir. Verilerin işlenmesi, onay olmadan devam etmez.
+      </p>
+      <h3>Gizlilik Politikası Değişiklikleri</h3>
+      <p>
+        Bu gizlilik politikası, yasal gereklilikler veya iş ihtiyaçlarına göre güncellenebilir. Herhangi bir değişiklik durumunda, kullanıcılarımıza gerekli bilgilendirmeler yapılacaktır.
       </p>
     </>
   );
