@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PersonStandingIcon } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -30,10 +29,6 @@ import { login, LoginPayload } from "@/redux/actions/userActions";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
-const getCompanyId = () => {
-  return localStorage.getItem("companyId");
-};
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -75,9 +70,8 @@ export default function LoginPage() {
   });
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    const companyId = getCompanyId();
     const actionResult = await dispatch(
-      login({ ...data, companyId } as LoginPayload)
+      login({ ...data } as LoginPayload)
     );
     if (login.fulfilled.match(actionResult)) {
       if (actionResult.payload) {
@@ -172,11 +166,6 @@ export default function LoginPage() {
               <Link href="/register">Kayıt Ol</Link>
             </Button>
           </div>
-          <Button variant="link">
-            <Link href="/company" className="text-xs font-bold underline">
-              Şirket bilgisi yok ise giriş yapın.
-            </Link>
-          </Button>
         </CardFooter>
       </Card>
     </>

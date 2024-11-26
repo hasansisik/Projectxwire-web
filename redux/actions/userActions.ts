@@ -12,7 +12,6 @@ export interface RegisterPayload {
 export interface LoginPayload {
   email: string;
   password: string;
-  companyId: string;
 }
 
 export interface VerifyEmailPayload {

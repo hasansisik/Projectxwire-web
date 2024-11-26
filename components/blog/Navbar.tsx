@@ -38,7 +38,7 @@ export const Navbar = () => {
         setNavigationHref("/welcome");
       }
     } else {
-      setNavigationHref("/company");
+      setNavigationHref("/login");
     }
   }, []);
 
