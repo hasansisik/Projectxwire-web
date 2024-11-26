@@ -18,13 +18,10 @@ import { getProjects, updateProject } from "@/redux/actions/projectActions";
 import { Project } from "@/redux/reducers/projectReducer";
 import { useToast } from "@/components/ui/use-toast";
 
-const getCompanyId = () => {
-  return localStorage.getItem("companyId");
-};
-
 export default function ProjectPage() {
   const { toast } = useToast();
   const dispatch = useDispatch<AppDispatch>();
+  const companyId = useSelector((state: RootState) => state.user.companyId);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [formData, setFormData] = useState({
     projectName: "",

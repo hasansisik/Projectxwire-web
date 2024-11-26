@@ -99,10 +99,6 @@ interface Task {
   number: number;
 }
 
-const getCompanyId = () => {
-  return localStorage.getItem("companyId");
-};
-
 const formSchema = z.object({
   taskTitle: z.string().nonempty("Görev kodu zorunludur"),
   taskCategory: z.string().nonempty("Görev kategori zorunludur"),
@@ -120,8 +116,7 @@ export default function Tasks() {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const plans = useSelector((state: RootState) => state.plans.plans);
   const { user, users } = useSelector((state: RootState) => state.user);
-
-  const companyId = getCompanyId();
+  const companyId = useSelector((state: RootState) => state.user.companyId);
 
   let projectId: string | null | undefined = null;
   if (typeof window !== "undefined") {

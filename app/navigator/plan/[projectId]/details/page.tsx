@@ -56,9 +56,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const getCompanyId = () =>
-  typeof window !== "undefined" ? localStorage.getItem("companyId") : null;
-
 const formSchema = z.object({
   taskTitle: z.string().nonempty("Görev kodu zorunludur"),
   taskCategory: z.string().nonempty("Görev kategori zorunludur"),
@@ -70,7 +67,7 @@ export default function PlanDetails() {
   const dispatch = useDispatch<AppDispatch>();
   const { toast } = useToast();
   const router = useRouter();
-  const companyId = getCompanyId();
+  const companyId = useSelector((state: RootState) => state.user.companyId);
   const searchParams = useSearchParams();
   const planId = searchParams.get("planId");
 

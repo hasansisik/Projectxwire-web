@@ -9,14 +9,7 @@ import { columns } from "@/components/tables/columns";
 export default function UsersEditPage() {
   const dispatch = useDispatch<AppDispatch>();
   const {users} = useSelector((state: RootState) => state.user);
-
-  const getCompanyId = () => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("companyId");
-    }
-    return null;
-  };
-  const companyId = getCompanyId();
+  const companyId = useSelector((state: RootState) => state.user.companyId);
 
   useEffect(() => {
     if (companyId) {

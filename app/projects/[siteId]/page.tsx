@@ -77,10 +77,6 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
-const getCompanyId = () => {
-  return localStorage.getItem("companyId");
-};
-
 const formSchema = z.object({
   projectName: z.string().nonempty("Proje ismi zorunludur"),
   projectCode: z.string().nonempty("Proje kodu zorunludur"),
@@ -93,11 +89,11 @@ export default function Projects() {
   const dispatch = useDispatch<AppDispatch>();
   const projects = useSelector((state: RootState) => state.projects.projects);
   const user = useSelector((state: RootState) => state.user.user);
+  const companyId = useSelector((state: RootState) => state.user.companyId);
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
   );
   const [selectedTab, setSelectedTab] = useState<string>("all");
-
   const siteId = useRef<string | null | undefined>(null);
 
   useEffect(() => {
@@ -116,7 +112,6 @@ export default function Projects() {
   });
 
   useEffect(() => {
-    const companyId = getCompanyId();
     if (companyId && siteId.current) {
       const payload: GetProjectsPayload = {
         companyId,
@@ -124,10 +119,9 @@ export default function Projects() {
       };
       dispatch(getProjects(payload));
     }
-  }, [dispatch]);
+  }, [dispatch,companyId]);
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    const companyId = getCompanyId();
     if (!companyId) {
       toast({
         title: "Hata",
@@ -189,7 +183,6 @@ export default function Projects() {
         title: "Proje Silindi",
         description: "Proje başarıyla silindi.",
       });
-      const companyId = getCompanyId();
       if (companyId && siteId.current) {
         const payload: GetProjectsPayload = {
           companyId,

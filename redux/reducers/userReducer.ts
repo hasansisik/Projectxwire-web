@@ -19,6 +19,7 @@ interface UserState {
   error: string | null;
   isAuthenticated?: boolean;
   message?: string;
+  companyId?: string | null;
 }
 
 const initialState: UserState = {
@@ -26,6 +27,7 @@ const initialState: UserState = {
   user: {},
   loading: false,
   error: null,
+  companyId: null,
 };
 
 export const userReducer = createReducer(initialState, (builder) => {
@@ -50,6 +52,7 @@ export const userReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
+      state.companyId = action.payload.company?._id || null; // companyId'yi kaydet
     })
     .addCase(login.rejected, (state, action) => {
       state.loading = false;
@@ -63,6 +66,7 @@ export const userReducer = createReducer(initialState, (builder) => {
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
+      state.companyId = action.payload.company?._id || null; // companyId'yi kaydet
     })
     .addCase(loadUser.rejected, (state, action) => {
       state.loading = false;

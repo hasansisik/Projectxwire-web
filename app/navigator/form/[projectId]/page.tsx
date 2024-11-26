@@ -86,13 +86,6 @@ interface Form {
   createdAt: string;
 }
 
-const getCompanyId = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("companyId");
-  }
-  return null;
-};
-
 const formSchema = z.object({
   formTitle: z.string().nonempty("Plan kodu zorunludur"),
   formCategory: z.string().nonempty("Plan kategori zorunludur"),
@@ -108,9 +101,8 @@ export default function Forms() {
   const [searchKey, setSearchKey] = useState("");
   const [searchResults, setSearchResults] = useState<Form[]>([]);
   const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
+  const companyId = useSelector((state: RootState) => state.user.companyId);
 
-  const companyId = getCompanyId();
-  
   let projectId: string | null | undefined = null;
   if (typeof window !== "undefined") {
     const url = new URL(window.location.href);
@@ -447,7 +439,10 @@ export default function Forms() {
                     </div>
                     <div className="flex-center">
                       <Image
-                        src={form.formPerson.picture}
+                        src={
+                          form.formPerson?.picture ||
+                          "https://firebasestorage.googleapis.com/v0/b/projectxwire-e951a.appspot.com/o/user.png?alt=media&token=1beeeb68-a4c5-4a9c-b0e1-b3bd437a37fc"
+                        }
                         width="40"
                         height="40"
                         style={{ borderRadius: "50%" }}
@@ -456,7 +451,7 @@ export default function Forms() {
                       <div>
                         <p className="text-xs font-normal">İmzalayan :</p>
                         <p className="text-sm font-bold">
-                          {form.formPerson.name}
+                          {form.formPerson?.name || "Bilinmeyen Kişi"}
                         </p>
                       </div>
                     </div>
@@ -539,14 +534,17 @@ export default function Forms() {
                       />
                       <div>
                         <p className="text-xs font-normal">Oluşturan :</p>
-                        <p className="text-sm font-bold">
+                        <p className="text-sm font-normal">
                           {form.formCreator.name}
                         </p>
                       </div>
                     </div>
                     <div className="flex-center">
                       <Image
-                        src={form.formPerson.picture}
+                        src={
+                          form.formPerson?.picture ||
+                          "https://firebasestorage.googleapis.com/v0/b/projectxwire-e951a.appspot.com/o/user.png?alt=media&token=1beeeb68-a4c5-4a9c-b0e1-b3bd437a37fc"
+                        }
                         width="40"
                         height="40"
                         style={{ borderRadius: "50%" }}
@@ -554,8 +552,8 @@ export default function Forms() {
                       />
                       <div>
                         <p className="text-xs font-normal">İmzalayan :</p>
-                        <p className="text-sm font-bold">
-                          {form.formPerson.name}
+                        <p className="text-sm font-normal">
+                          {form.formPerson?.name || "Bilinmeyen Kişi"}
                         </p>
                       </div>
                     </div>

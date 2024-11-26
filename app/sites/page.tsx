@@ -77,10 +77,6 @@ const uploadLogoToFirebase = async (file: File): Promise<string> => {
   return downloadURL;
 };
 
-const getCompanyId = () => {
-  return localStorage.getItem("companyId");
-};
-
 const formSchema = z.object({
   siteName: z.string().nonempty("Şantiye ismi zorunludur"),
   siteCode: z.string().nonempty("Şantiye kodu zorunludur"),
@@ -93,6 +89,7 @@ export default function Sites() {
   const dispatch = useDispatch<AppDispatch>();
   const sites = useSelector((state: RootState) => state.sites.sites);
   const user = useSelector((state: RootState) => state.user.user);
+  const companyId = useSelector((state: RootState) => state.user.companyId);
   const [selectedSiteId, setSelectedSiteId] = useState<string | null>(null);
   const [date, setDate] = React.useState<Date>();
 
@@ -107,14 +104,12 @@ export default function Sites() {
   });
 
   useEffect(() => {
-    const companyId = getCompanyId();
     if (companyId) {
       dispatch(getSites(companyId));
     }
-  }, [dispatch]);
+  }, [dispatch, companyId]);
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    const companyId = getCompanyId();
     if (!companyId) {
       toast({
         title: "Hata",
@@ -169,7 +164,6 @@ export default function Sites() {
         title: "Şantiye Silindi",
         description: "Şantiye başarıyla silindi.",
       });
-      const companyId = getCompanyId();
       if (companyId) {
         dispatch(deleteSite(companyId));
       }

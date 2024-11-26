@@ -27,7 +27,6 @@ export interface GetProjectsPayload {
 export const createProject = createAsyncThunk(
   "project/create",
   async (payload: CreateProjectPayload, thunkAPI) => {
-    console.log("payload");
     try {
       const { data } = await axios.post(`${server}/project`, payload);
       return data.project;
@@ -41,9 +40,12 @@ export const getProjects = createAsyncThunk(
   "project/getAll",
   async (payload: GetProjectsPayload, thunkAPI) => {
     try {
+      console.log(payload)
       const { data } = await axios.post(`${server}/project/gets`, payload);
+      console.log(data)
       return data.projects;
     } catch (error: any) {
+      console.log(error)
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
