@@ -18,7 +18,7 @@ export const Hero = () => {
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
               <a
-                href="https://play.google.com/store/apps?gl=TR"
+                href="https://play.google.com/store/apps/details?id=com.projectxwire.apps"
                 target="_blank"
                 rel="noopener"
                 className="flex items-center space-x-2 px-8 py-4 text-lg font-medium text-center text-white bg-orange-600 rounded-md "
@@ -107,7 +107,7 @@ export const Hero = () => {
                 <span>Google Play Store</span>
               </a>
               <a
-                href="https://github.com/web3templates/nextly-template/"
+                href="https://apps.apple.com/tr/app/projectxwire/id6720710483?l=tr"
                 target="_blank"
                 rel="noopener"
                 className="flex items-center space-x-2 text-gray-500 dark:text-gray-400"

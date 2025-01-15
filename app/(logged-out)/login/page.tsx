@@ -161,10 +161,6 @@ export default function LoginPage() {
             >
               Şifremi Unuttum
             </Link>
-            <small>Hesabınız yok mu ?</small>
-            <Button asChild variant="outline" size="sm">
-              <Link href="/register">Kayıt Ol</Link>
-            </Button>
           </div>
         </CardFooter>
       </Card>

@@ -44,7 +44,7 @@ export const Navbar = () => {
 
   return (
     <div className="w-full">
-      <nav className="container relative flex items-center justify-between p-8 mx-auto">
+      <nav className="container relative flex flex-col items-center p-8 mx-auto">
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/">
@@ -58,7 +58,7 @@ export const Navbar = () => {
           </Link>
         </div>
         {/* Buton */}
-        <div className="ml-auto">
+        <div className="flex flex-col pt-4 items-center w-full">
           <Link href={navigationHref}>
             <span className="px-6 py-2 text-white bg-orange-600 rounded-md">
               Panele Git
