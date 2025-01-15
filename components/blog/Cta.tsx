@@ -15,7 +15,7 @@ export const Cta = () => {
         </div>
         <div className="flex-shrink-0 w-full text-center lg:w-auto">
           <a
-            href="https://play.google.com/store/apps?gl=TR"
+            href="https://apps.apple.com/tr/app/projectxwire/id6720710483?l=tr"
             target="_blank"
             rel="noopener"
             className="flex items-center space-x-2 px-8 py-4 text-lg font-medium text-center text-black bg-white rounded-md "
