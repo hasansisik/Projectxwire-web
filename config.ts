@@ -1,4 +1,4 @@
-export const server: string ="https://projectxwire-server-75efe19e6789.herokuapp.com/v1";
+export const server: string ="https://projectxwire-server-d3ccf9a62f43.herokuapp.com/v1";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
