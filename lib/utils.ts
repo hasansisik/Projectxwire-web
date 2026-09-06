@@ -5,10 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getPlanThumbnailUrl(url?: string): string {
+export function getPlanThumbnailUrl(url?: string | string[]): string {
   if (!url) return "";
-  if (typeof url === "string" && url.includes("/upload/") && !url.includes("/pg_")) {
-    return url.replace("/upload/", "/upload/pg_1/").replace(/\.pdf$/i, ".jpg");
+  const targetUrl = Array.isArray(url) ? url[0] : url;
+  if (typeof targetUrl === "string" && targetUrl.includes("/upload/") && !targetUrl.includes("/pg_")) {
+    return targetUrl.replace("/upload/", "/upload/pg_1/").replace(/\.pdf$/i, ".jpg");
   }
-  return url;
+  return targetUrl || "";
 }
