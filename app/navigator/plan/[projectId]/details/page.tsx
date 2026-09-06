@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
-import { getPlanThumbnailUrl } from "@/lib/utils";
+import { getPlanThumbnailUrl, getAllPlanPageUrls } from "@/lib/utils";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
@@ -246,76 +246,102 @@ export default function PlanDetails() {
               style={{
                 width: "900px",
                 height: "700px",
-                overflow: "hidden",
+                overflowY: "auto",
                 border: "1px solid #ccc",
                 position: "relative",
               }}
             >
               <TransformWrapper
-                limitToBounds={true}
+                limitToBounds={false}
                 minScale={0.5}
                 maxScale={4}
                 centerOnInit={true}
               >
-                <TransformComponent>
-                  <div style={{ position: "relative" }}>
-                    <img
-                      src={getPlanThumbnailUrl(plan?.planImages)}
-                      alt="Plan"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                    <canvas
-                      ref={canvasRef}
-                      width={1000}
-                      height={700}
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                      }}
-                      onClick={
-                        mode === "text"
-                          ? handleText
-                          : mode === "pin"
-                          ? handlePin
-                          : handleDraw
-                      }
-                    />
-                    {pins.map((pin, index) => (
-                      <div
-                        key={index}
+                <TransformComponent wrapperStyle={{ width: "100%" }} contentStyle={{ width: "100%" }}>
+                  <div style={{ position: "relative", width: "100%" }}>
+                    <div style={{ position: "relative", width: "100%" }}>
+                      <img
+                        src={getAllPlanPageUrls(plan?.planImages, plan?.pageCount || 1)[0] || getPlanThumbnailUrl(plan?.planImages)}
+                        alt="Plan"
+                        style={{
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
+                        }}
+                      />
+                      <canvas
+                        ref={canvasRef}
+                        width={1000}
+                        height={700}
                         style={{
                           position: "absolute",
-                          left: `${pin.x}%`,
-                          top: `${pin.y}%`,
-                          transform: "translate(-50%, -50%)",
+                          top: 0,
+                          left: 0,
+                          width: "100%",
+                          height: "100%",
                         }}
-                        onClick={() => handlePinClick(pin.task._id)}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 30"
-                          fill="none"
-                          width="24"
-                          height="30"
+                        onClick={
+                          mode === "text"
+                            ? handleText
+                            : mode === "pin"
+                            ? handlePin
+                            : handleDraw
+                        }
+                      />
+                      {pins.map((pin, index) => (
+                        <div
+                          key={pin._id || index}
+                          style={{
+                            position: "absolute",
+                            left: `${pin.x}%`,
+                            top: `${pin.y}%`,
+                            transform: "translate(-50%, -50%)",
+                            cursor: "pointer",
+                            zIndex: 10,
+                          }}
+                          onClick={() => handlePinClick(pin?.task?._id || pin?.task)}
                         >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
-                            fill="red"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M12 22C15 22 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 9 22 12 22ZM16.2675 15.2202C17.3398 13.2872 18 11.3235 18 10C18 6.68629 15.3137 4 12 4C8.68629 4 6 6.68629 6 10C6 11.3499 6.68682 13.3658 7.79716 15.3358C8.62357 14.2077 9.87268 13 12 13C14.0518 13 15.5373 14.1153 16.2675 15.2202Z"
-                            fill="red"
-                          />
-                        </svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 30"
+                            fill="none"
+                            width="24"
+                            height="30"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M12 12C13.6569 12 15 10.6569 15 9C15 7.34315 13.6569 6 12 6C10.3431 6 9 7.34315 9 9C9 10.6569 10.3431 12 12 12Z"
+                              fill="red"
+                            />
+                            <path
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M12 22C15 22 20 14.4183 20 10C20 5.58172 16.4183 2 12 2C7.58172 2 4 5.58172 4 10C4 14.4183 9 22 12 22ZM16.2675 15.2202C17.3398 13.2872 18 11.3235 18 10C18 6.68629 15.3137 4 12 4C8.68629 4 6 6.68629 6 10C6 11.3499 6.68682 13.3658 7.79716 15.3358C8.62357 14.2077 9.87268 13 12 13C14.0518 13 15.5373 14.1153 16.2675 15.2202Z"
+                              fill="red"
+                            />
+                          </svg>
+                        </div>
+                      ))}
+                    </div>
+                    {getAllPlanPageUrls(plan?.planImages, plan?.pageCount || 1).slice(1).map((url, idx) => (
+                      <div key={idx} style={{ width: "100%" }}>
+                        <div
+                          style={{
+                            height: "3px",
+                            backgroundColor: "#e5e7eb",
+                            margin: "4px 0",
+                          }}
+                        />
+                        <img
+                          src={url}
+                          alt={`Page ${idx + 2}`}
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                            display: "block",
+                          }}
+                        />
                       </div>
                     ))}
                   </div>
