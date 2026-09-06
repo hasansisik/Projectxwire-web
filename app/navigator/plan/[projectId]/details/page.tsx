@@ -149,8 +149,8 @@ export default function PlanDetails() {
       const { width, height } = canvas;
       const scaleX = width / rect.width;
       const scaleY = height / rect.height;
-      const pinWidth = 24;
-      const pinHeight = 30;
+      const pinWidth = 14;
+      const pinHeight = 18;
       const adjustedX = x - pinWidth / 2;
       const adjustedY = y - pinHeight / 2;
       const pinX = ((adjustedX * scaleX) / width) * 100;
@@ -305,8 +305,8 @@ export default function PlanDetails() {
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 30"
                             fill="none"
-                            width="24"
-                            height="30"
+                            width="14"
+                            height="18"
                           >
                             <path
                               fillRule="evenodd"
