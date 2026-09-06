@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { getPlanThumbnailUrl } from "@/lib/utils";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -62,7 +63,7 @@ export function Sidebar({ isCollapsed, task }: SidebarProps) {
               href={`/navigator/plan/${task.project}/details/?planId=${task.plan._id}`}
             >
               <Image
-                src={task.plan.planImages}
+                src={getPlanThumbnailUrl(task.plan?.planImages)}
                 width="450"
                 height="300"
                 alt="Projectxwire"

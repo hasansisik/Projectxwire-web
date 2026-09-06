@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getPlanThumbnailUrl } from "@/lib/utils";
 import { RootState, AppDispatch } from "@/redux/store";
 import {
   createPlan,
@@ -361,7 +362,7 @@ export default function Plans() {
                     </CardHeader>
                     <CardContent>
                       <Image
-                        src={item.planImages}
+                        src={getPlanThumbnailUrl(item.planImages)}
                         width="175"
                         height="100"
                         alt="Projectxwire"
@@ -439,7 +440,7 @@ export default function Plans() {
                     </CardHeader>
                     <CardContent>
                       <Image
-                        src={item.planImages}
+                        src={getPlanThumbnailUrl(item.planImages)}
                         width="175"
                         height="100"
                         alt="Projectxwire"

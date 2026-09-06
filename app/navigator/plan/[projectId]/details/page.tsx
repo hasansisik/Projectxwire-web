@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { getPlanThumbnailUrl } from "@/lib/utils";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
@@ -259,7 +260,7 @@ export default function PlanDetails() {
                 <TransformComponent>
                   <div style={{ position: "relative" }}>
                     <img
-                      src={plan.planImages}
+                      src={getPlanThumbnailUrl(plan?.planImages)}
                       alt="Plan"
                       style={{
                         width: "100%",
