@@ -12,45 +12,50 @@ export default function Home() {
   return (
     <Container>
       <Hero />
-      <SectionTitle
-        preTitle="Projectxwire"
-        title="İnşaat Sahalarında Sorun Yönetimi İçin Güçlü ve Etkili Çözüm"
-      >
-        Projectxwire, inşaat sahalarındaki sorunları hızla yönetmenizi sağlayan bir
-        mobil uygulamadır. Uygulama içi mesajlaşma ve belge yönetimi ile
-        ekibinizin iletişimini ve dokümantasyonu güvenli bir şekilde organize
-        eder. Projectxwire, iş akışınızı optimize ederek projelerinizin sorunsuz
-        ilerlemesine katkı sağlar.
-      </SectionTitle>
+      <div id="features" className="scroll-mt-28">
+        <SectionTitle
+          preTitle="Projectxwire"
+          title="İnşaat Sahalarında Sorun Yönetimi İçin Güçlü ve Etkili Çözüm"
+        >
+          Projectxwire, inşaat sahalarındaki sorunları hızla yönetmenizi sağlayan bir
+          mobil ve web platformudur. Uygulama içi mesajlaşma ve belge yönetimi ile
+          ekibinizin iletişimini ve dokümantasyonu güvenli bir şekilde organize
+          eder. İş akışınızı optimize ederek projelerinizin sorunsuz
+          ilerlemesine katkı sağlar.
+        </SectionTitle>
 
-      <Benefits data={benefitOne} />
-      <Benefits imgPos="right" data={benefitTwo} />
+        <Benefits data={benefitOne} />
+        <Benefits imgPos="right" data={benefitTwo} />
+      </div>
 
-      <SectionTitle
-        preTitle="Video İzleyin"
-        title="İhtiyaçlarınıza Nasıl Ulaşacağınızı Öğrenin"
-      >
-        Bu bölüm, Projectxwire ürününüzün tanıtım veya demo videosunu vurgulamak
-        için tasarlanmıştır. Analistler, bir açılış sayfasının video ile %3 daha
-        yüksek dönüşüm oranına sahip olduğunu belirtiyor. Bu yüzden, videoyu
-        eklemeyi unutmayın. Tam da böyle.
-      </SectionTitle>
+      <div id="video" className="scroll-mt-28">
+        <SectionTitle
+          preTitle="Tanıtım Videosu"
+          title="Projectxwire ile Süreçlerinizi Nasıl Hızlandırırsınız?"
+        >
+          Projectxwire&apos;ın şantiyelerdeki sorun bildirim, takip ve çözüm süreçlerini nasıl
+          kolaylaştırdığını tanıtım videomuzda adım adım izleyin.
+        </SectionTitle>
 
-      <Video videoId="fZ0D0cnR88E" />
+        <Video videoId="fZ0D0cnR88E" />
+      </div>
 
-      <SectionTitle preTitle="Geri Bildirimler" title="Müşterilerimiz Ne Dedi?">
-        Geri bildirimler, marka güvenini ve bilinirliğini artırmanın harika bir
-        yoludur. Bu bölümü popüler müşterilerinizi vurgulamak için kullanın.
-      </SectionTitle>
+      <div id="testimonials" className="scroll-mt-28">
+        <SectionTitle preTitle="Geri Bildirimler" title="Müşterilerimiz Ne Diyor?">
+          Sektörün önde gelen inşaat firmaları ve proje yöneticilerinin Projectxwire deneyimleri.
+        </SectionTitle>
 
-      <Testimonials />
+        <Testimonials />
+      </div>
 
-      <SectionTitle preTitle="SSS" title="Sıkça Sorulan Sorular">
-        Müşterilerinizin olası sorularını burada yanıtlayın, bu hem dönüşüm
-        oranını artırır hem de destek veya sohbet taleplerini azaltır.
-      </SectionTitle>
+      <div id="faq" className="scroll-mt-28">
+        <SectionTitle preTitle="SSS" title="Sıkça Sorulan Sorular">
+          Projectxwire platformu ve mobil uygulamalar hakkında en çok merak edilen soruların yanıtları.
+        </SectionTitle>
 
-      <Faq />
+        <Faq />
+      </div>
+
       <Cta />
     </Container>
   );

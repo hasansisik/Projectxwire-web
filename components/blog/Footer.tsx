@@ -28,117 +28,187 @@ export function Footer() {
     return () => observer.disconnect();
   }, []);
 
-  const navigation = ["Anasayfa"];
-const legal = [
-  { name: "Hakkımızda", href: "/politcy/about-us" },
-  { name: "Gizlilik Politikası", href: "/politcy/privacy" },
-  { name: "Kullanım Koşulları", href: "/politcy/terms" },
-  { name: "Çerez Politikası", href: "/politcy/cookie" },
-];  return (
-  <div className="relative">
-    <Container>
-      <div className="grid max-w-screen-xl grid-cols-1 gap-10 pt-10 mx-auto mt-5 border-t border-gray-100 dark:border-trueGray-700 lg:grid-cols-5">
-        <div className="lg:col-span-2">
-          <div>
-            <Link
-              href="/"
-              className="flex items-center space-x-2 text-2xl font-medium text-orange-600 dark:text-gray-100"
-            >
+  const productLinks = [
+    { name: "Özellikler", href: "/#features" },
+    { name: "Tanıtım Videosu", href: "/#video" },
+    { name: "Müşteri Yorumları", href: "/#testimonials" },
+    { name: "Sıkça Sorulan Sorular", href: "/#faq" },
+    { name: "Yönetim Paneli", href: "/login" },
+  ];
+
+  const legalLinks = [
+    { name: "Hakkımızda", href: "/politcy/about-us" },
+    { name: "Gizlilik Politikası", href: "/politcy/privacy" },
+    { name: "Kullanım Koşulları", href: "/politcy/terms" },
+    { name: "Çerez Politikası", href: "/politcy/cookie" },
+  ];
+
+  return (
+    <footer className="w-full mt-16 border-t border-gray-200/70 dark:border-zinc-800/80 bg-gray-50/50 dark:bg-zinc-950/40">
+      <Container>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 py-14">
+          {/* Sütun 1: Logo, Açıklama ve Mağaza Butonları */}
+          <div className="lg:col-span-2 space-y-4">
+            <Link href="/" className="inline-block">
               <Image
                 src={isDarkMode ? "/img/logo-white.png" : "/img/logo-black.png"}
-                width="240"
-                height="75"
+                width={190}
+                height={55}
                 alt="Projectxwire"
-                style={{ width: "240", height: "75px" }}
+                className="h-10 w-auto object-contain"
               />
             </Link>
+
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400 max-w-sm">
+              İnşaat sahalarında sorun bildirimlerini hızlandıran, ekipler arası iletişimi ve
+              dijital belge akışını optimize eden yeni nesil yönetim platformu.
+            </p>
+
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.projectxwire.apps"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-orange-500 hover:text-orange-600 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-colors shadow-2xs"
+              >
+                <span>Google Play</span>
+              </a>
+              <a
+                href="https://apps.apple.com/tr/app/projectxwire/id6720710483?l=tr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-orange-500 hover:text-orange-600 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-colors shadow-2xs"
+              >
+                <span>App Store</span>
+              </a>
+            </div>
           </div>
 
-          <div className="max-w-md mt-4 text-gray-500 dark:text-gray-400">
-            Projectxwire , inşaat sektöründe faaliyet gösteren bir uygulama
-            şirkettir.
+          {/* Sütun 2: Ürün */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-wider text-gray-900 dark:text-gray-100 uppercase mb-4">
+              Ürün
+            </h3>
+            <ul className="space-y-2.5">
+              {productLinks.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="mt-5">
+          {/* Sütun 3: Kurumsal & Yasal */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-wider text-gray-900 dark:text-gray-100 uppercase mb-4">
+              Kurumsal
+            </h3>
+            <ul className="space-y-2.5">
+              {legalLinks.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Sütun 4: Sosyal Medya & Geliştirici */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold tracking-wider text-gray-900 dark:text-gray-100 uppercase mb-4">
+              Bizi Takip Edin
+            </h3>
+            <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400">
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 dark:bg-zinc-800 hover:bg-orange-50 dark:hover:bg-orange-950/40 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+              >
+                <Twitter size={18} />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 dark:bg-zinc-800 hover:bg-orange-50 dark:hover:bg-orange-950/40 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 dark:bg-zinc-800 hover:bg-orange-50 dark:hover:bg-orange-950/40 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 dark:bg-zinc-800 hover:bg-orange-50 dark:hover:bg-orange-950/40 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+              >
+                <Linkedin size={18} />
+              </a>
+            </div>
+
+            <div className="pt-2">
+              <span className="text-xs text-gray-400 dark:text-gray-500 block mb-1">
+                Geliştirici Firma
+              </span>
+              <a
+                href="https://gegify.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <Image
+                  src="/img/gegify.svg"
+                  alt="Gegify"
+                  width={140}
+                  height={32}
+                  className="h-7 w-auto object-contain"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Alt Telif Çubuğu */}
+        <div className="py-6 border-t border-gray-200/60 dark:border-zinc-800/70 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 dark:text-gray-400 gap-3">
+          <div>
+            © {new Date().getFullYear()}{" "}
+            <strong className="font-semibold text-gray-700 dark:text-gray-300">Projectxwire</strong>. Tüm hakları saklıdır.
+          </div>
+          <div>
+            Powered by{" "}
             <a
               href="https://gegify.com/"
               target="_blank"
-              rel="noopener"
-              className="relative block w-44"
+              rel="noopener noreferrer"
+              className="font-medium text-orange-600 dark:text-orange-400 hover:underline"
             >
-              <Image
-                src="/img/gegify.svg"
-                alt="Powered by Gegify"
-                width="212"
-                height="44"
-              />
+              Gegify
             </a>
           </div>
         </div>
-
-        <div>
-          <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-            {navigation.map((item, index) => (
-              <Link
-                key={index}
-                href="/"
-                className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-trueGray-700"
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div>
-          <div className="flex flex-wrap w-full -mt-2 -ml-3 lg:ml-0">
-            {legal.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className="w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-trueGray-700"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div className="">
-          <div>Bizi Takip Edin</div>
-          <div className="flex mt-5 space-x-5 text-gray-400 dark:text-gray-500">
-            <a href="https://twitter.com" target="_blank" rel="noopener">
-              <span className="sr-only">Twitter</span>
-              <Twitter />
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener">
-              <span className="sr-only">Facebook</span>
-              <Facebook />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener">
-              <span className="sr-only">Instagram</span>
-              <Instagram />
-            </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener">
-              <span className="sr-only">Linkedin</span>
-              <Linkedin />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
-        Telif Hakkı © {new Date().getFullYear()}. ♥ ile yapılmıştır,{" "}
-        <a href="https://projectxwire.com/" target="_blank" rel="noopener">
-          <strong>Projectxwire</strong>.
-        </a>{" "}
-        Yazılımı yapan firma{" "}
-        <a href="https://gegify.com/" target="_blank" rel="noopener">
-          <strong>Gegify</strong>
-        </a>{" "}
-        tarafından 2024 yılında çıkarılmıştır.
-      </div>
-    </Container>
-  </div>
-);
+      </Container>
+    </footer>
+  );
 }
 
 const Twitter = ({ size = 24 }) => (
