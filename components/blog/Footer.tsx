@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Container } from "@/components/blog/Container";
+import { StoreButtons } from "@/components/blog/StoreButtons";
 
 export function Footer() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -33,7 +34,6 @@ export function Footer() {
     { name: "Tanıtım Videosu", href: "/#video" },
     { name: "Müşteri Yorumları", href: "/#testimonials" },
     { name: "Sıkça Sorulan Sorular", href: "/#faq" },
-    { name: "Yönetim Paneli", href: "/login" },
   ];
 
   const legalLinks = [
@@ -64,23 +64,8 @@ export function Footer() {
               dijital belge akışını optimize eden yeni nesil yönetim platformu.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-3">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.projectxwire.apps"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-orange-500 hover:text-orange-600 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-colors shadow-2xs"
-              >
-                <span>Google Play</span>
-              </a>
-              <a
-                href="https://apps.apple.com/tr/app/projectxwire/id6720710483?l=tr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-orange-500 hover:text-orange-600 dark:hover:border-orange-500 dark:hover:text-orange-400 transition-colors shadow-2xs"
-              >
-                <span>App Store</span>
-              </a>
+            <div className="pt-2">
+              <StoreButtons idPrefix="footer" className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5" />
             </div>
           </div>
 
@@ -166,43 +151,29 @@ export function Footer() {
               </a>
             </div>
 
-            <div className="pt-2">
-              <span className="text-xs text-gray-400 dark:text-gray-500 block mb-1">
-                Geliştirici Firma
-              </span>
-              <a
-                href="https://gegify.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block opacity-80 hover:opacity-100 transition-opacity"
-              >
-                <Image
-                  src="/img/gegify.svg"
-                  alt="Gegify"
-                  width={140}
-                  height={32}
-                  className="h-7 w-auto object-contain"
-                />
-              </a>
-            </div>
           </div>
         </div>
 
         {/* Alt Telif Çubuğu */}
-        <div className="py-6 border-t border-gray-200/60 dark:border-zinc-800/70 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 dark:text-gray-400 gap-3">
+        <div className="py-6 border-t border-gray-200/60 dark:border-zinc-800/70 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 dark:text-gray-400 gap-4">
           <div>
             © {new Date().getFullYear()}{" "}
             <strong className="font-semibold text-gray-700 dark:text-gray-300">Projectxwire</strong>. Tüm hakları saklıdır.
           </div>
           <div>
-            Powered by{" "}
             <a
               href="https://gegify.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-orange-600 dark:text-orange-400 hover:underline"
+              className="inline-block opacity-85 hover:opacity-100 transition-opacity"
             >
-              Gegify
+              <Image
+                src="/img/gegify.svg"
+                alt="Gegify"
+                width={125}
+                height={26}
+                className="h-6 w-auto object-contain"
+              />
             </a>
           </div>
         </div>
