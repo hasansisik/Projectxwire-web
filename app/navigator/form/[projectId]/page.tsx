@@ -440,8 +440,9 @@ export default function Forms() {
                     <div className="flex-center">
                       <Image
                         src={
-                          form.formPerson?.picture ||
-                          "https://firebasestorage.googleapis.com/v0/b/projectxwire-e951a.appspot.com/o/user.png?alt=media&token=1beeeb68-a4c5-4a9c-b0e1-b3bd437a37fc"
+                          form.formPerson?.picture && !form.formPerson?.picture.includes("firebasestorage.googleapis.com")
+                            ? form.formPerson.picture
+                            : "https://res.cloudinary.com/w5lgvxbj/image/upload/v1788705708/adaptive-icon.png"
                         }
                         width="40"
                         height="40"
@@ -542,8 +543,9 @@ export default function Forms() {
                     <div className="flex-center">
                       <Image
                         src={
-                          form.formPerson?.picture ||
-                          "https://firebasestorage.googleapis.com/v0/b/projectxwire-e951a.appspot.com/o/user.png?alt=media&token=1beeeb68-a4c5-4a9c-b0e1-b3bd437a37fc"
+                          form.formPerson?.picture && !form.formPerson?.picture.includes("firebasestorage.googleapis.com")
+                            ? form.formPerson.picture
+                            : "https://res.cloudinary.com/w5lgvxbj/image/upload/v1788705708/adaptive-icon.png"
                         }
                         width="40"
                         height="40"
