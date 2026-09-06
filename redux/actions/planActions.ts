@@ -74,7 +74,7 @@ export const updatePlan = createAsyncThunk(
   async (payload: UpdatePlanPayload, thunkAPI) => {
     try {
       const { data } = await axios.put(
-        `${server}/plan/${payload.planId}`,
+        `${server}/plan/single/${payload.planId}`,
         payload
       );
       return data.data;
