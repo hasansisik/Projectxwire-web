@@ -440,7 +440,7 @@ export default function Forms() {
                     <div className="flex-center">
                       <Image
                         src={
-                          form.formPerson?.picture && !form.formPerson?.picture.includes("firebasestorage.googleapis.com")
+                          form.formPerson?.picture
                             ? form.formPerson.picture
                             : "https://res.cloudinary.com/w5lgvxbj/image/upload/v1788705708/adaptive-icon.png"
                         }
@@ -543,7 +543,7 @@ export default function Forms() {
                     <div className="flex-center">
                       <Image
                         src={
-                          form.formPerson?.picture && !form.formPerson?.picture.includes("firebasestorage.googleapis.com")
+                          form.formPerson?.picture
                             ? form.formPerson.picture
                             : "https://res.cloudinary.com/w5lgvxbj/image/upload/v1788705708/adaptive-icon.png"
                         }

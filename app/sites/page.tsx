@@ -73,7 +73,6 @@ const formSchema = z.object({
   siteName: z.string().nonempty("Şantiye ismi zorunludur"),
   siteCode: z.string().nonempty("Şantiye kodu zorunludur"),
   finishDate: z.any().optional(),
-  logo: z.any().optional(),
 });
 
 export default function Sites() {
@@ -91,7 +90,6 @@ export default function Sites() {
       siteName: "",
       siteCode: "",
       finishDate: "",
-      logo: null,
     },
   });
 
@@ -110,16 +108,9 @@ export default function Sites() {
       return;
     }
 
-    let logoURL = "";
-    if (data.logo && data.logo[0]) {
-      const logoFile = data.logo[0] as unknown as File;
-      logoURL = await uploadFileToCloudinary(logoFile, "ProjectxwireSites");
-    }
-
     const payload: CreateSitePayload = {
       ...data,
       companyId,
-      logo: logoURL || undefined,
     };
 
     const actionResult = await dispatch(createSite(payload));
@@ -301,27 +292,7 @@ export default function Sites() {
                         </FormItem>
                       )}
                     />
-                    {/* Logo Input */}
-                    <FormField
-                      control={form.control}
-                      name="logo"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Şantiye Logosu</FormLabel>
-                          <FormControl>
-                            <Input
-                              type="file"
-                              accept="image/png,image/jpeg,image/jpg"
-                              onChange={(e) => field.onChange(e.target.files)}
-                            />
-                          </FormControl>
-                          <FormDescription>
-                            Şantiye Logosunu Girin
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+
                     <DialogFooter>
                       <DialogClose asChild>
                         <Button type="submit">Şantiye Ekle</Button>
@@ -410,7 +381,10 @@ export default function Sites() {
                 >
                   <div className="w-[75px] h-[75px] rounded-full bg-white flex items-center justify-center">
                     <Image
-                      src={site.logo}
+                      src={
+                        site.logo ||
+                        "https://res.cloudinary.com/w5lgvxbj/image/upload/v1788705708/adaptive-icon.png"
+                      }
                       alt="Projectxwire"
                       width={75}
                       height={75}
