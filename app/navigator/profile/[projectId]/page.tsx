@@ -32,19 +32,11 @@ import {
   VerifyEmailPayload,
 } from "@/redux/actions/userActions";
 import { useToast } from "@/components/ui/use-toast";
-import { storage } from "@/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { uploadFileToCloudinary } from "@/utils/upload";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Image from "next/image";
-
-const uploadProfilePictureToFirebase = async (file: File): Promise<string> => {
-  const storageRef = ref(storage, `ProfilePictures/${file.name}`);
-  await uploadBytes(storageRef, file);
-  const downloadURL = await getDownloadURL(storageRef);
-  return downloadURL;
-};
 
 const formSchema = z.object({
   verificationCode: z.string(),
@@ -82,7 +74,7 @@ export default function ProfilePage() {
   const handlePicture = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      const pictureURL = await uploadProfilePictureToFirebase(file);
+      const pictureURL = await uploadFileToCloudinary(file, "ProfilePictures");
       setFormData({ ...formData, picture: pictureURL });
     }
   };

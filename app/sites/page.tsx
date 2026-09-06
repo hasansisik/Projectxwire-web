@@ -66,16 +66,8 @@ import { tr } from "date-fns/locale";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
 import { Site } from "@/redux/reducers/siteReducer";
-import { storage } from "@/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { uploadFileToCloudinary } from "@/utils/upload";
 import { Clock } from "lucide-react";
-
-const uploadLogoToFirebase = async (file: File): Promise<string> => {
-  const storageRef = ref(storage, `ProjectxwireSites/${file.name}`);
-  await uploadBytes(storageRef, file);
-  const downloadURL = await getDownloadURL(storageRef);
-  return downloadURL;
-};
 
 const formSchema = z.object({
   siteName: z.string().nonempty("Şantiye ismi zorunludur"),
@@ -121,7 +113,7 @@ export default function Sites() {
     let logoURL = "";
     if (data.logo && data.logo[0]) {
       const logoFile = data.logo[0] as unknown as File;
-      logoURL = await uploadLogoToFirebase(logoFile);
+      logoURL = await uploadFileToCloudinary(logoFile, "ProjectxwireSites");
     }
 
     const payload: CreateSitePayload = {

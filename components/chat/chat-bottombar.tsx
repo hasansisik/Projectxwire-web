@@ -9,8 +9,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "../ui/button";
 import { cn } from "@/lib/utils";
-import { storage } from "@/config";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { uploadFileToCloudinary } from "@/utils/upload";
 import {
   Dialog,
   DialogContent,
@@ -93,17 +92,10 @@ export default function ChatBottombar({
     }
   };
 
-  const uploadLogoToFirebase = async (file: File): Promise<string> => {
-    const storageRef = ref(storage, `ProjectxwireFile/${file.name}`);
-    await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(storageRef);
-    return downloadURL;
-  };
-
   const handleSend = async () => {
     let fileURL = null;
     if (selectedFile) {
-      fileURL = await uploadLogoToFirebase(selectedFile);
+      fileURL = await uploadFileToCloudinary(selectedFile, "ProjectxwireFile");
     }
     if (message.trim() || fileURL) {
       const payload: any = {
